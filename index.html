@@ -659,5 +659,83 @@ HUMANITY = 0
         });
     })();
 </script>
+    <!-- Cursed Capybara Popup -->
+<style>
+    .cursed-capybara {
+        position: absolute;
+        width: 150px;
+        height: auto;
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .cryptic-text {
+        position: absolute;
+        font-family: monospace;
+        font-size: 14px;
+        color: #ff0000;
+        text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+        opacity: 0;
+        z-index: 1001;
+        white-space: pre-wrap;
+        transition: opacity 0.5s ease-in-out;
+    }
+</style>
+
+<img src="cursed-capybara.png" alt="Cursed Capybara" id="cursed-capybara" class="cursed-capybara">
+
+<div id="cryptic-text" class="cryptic-text"></div>
+
+<script>
+    (function () {
+        const capybaraFacts = [
+            "Capybaras are social animals, but they\nalways know who’s watching...",
+            "In the dark, capybaras whisper secrets\nof the marshlands...",
+            "Their teeth never stop growing,\njust like your fears...",
+            "A group of capybaras is called a\n'meditation'... ironic, isn't it?",
+            "Capybaras can sleep in water...\nbut they never truly rest.",
+            "Under the full moon, they\nsee beyond the veil...",
+        ];
+
+        const cursedCapybara = document.getElementById('cursed-capybara');
+        const crypticText = document.getElementById('cryptic-text');
+
+        function getRandomPosition() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const randomX = Math.random() * (windowWidth - 150); // Prevent overflow
+            const randomY = Math.random() * (windowHeight - 150);
+            return { x: randomX, y: randomY };
+        }
+
+        function showCursedCapybara() {
+            const { x, y } = getRandomPosition();
+            cursedCapybara.style.left = `${x}px`;
+            cursedCapybara.style.top = `${y}px`;
+
+            const randomFact = capybaraFacts[Math.floor(Math.random() * capybaraFacts.length)];
+            crypticText.textContent = randomFact;
+            crypticText.style.left = `${x}px`;
+            crypticText.style.top = `${y + 160}px`;
+
+            cursedCapybara.style.opacity = 1;
+            crypticText.style.opacity = 1;
+
+            setTimeout(() => {
+                cursedCapybara.style.opacity = 0;
+                crypticText.style.opacity = 0;
+            }, 4000); // Visible for 4 seconds
+        }
+
+        // Randomly show the cursed capybara with text every 5-10 seconds
+        setInterval(() => {
+            if (Math.random() > 0.5) { // 50% chance to trigger
+                showCursedCapybara();
+            }
+        }, Math.random() * 5000 + 5000); // Random interval between 5-10 seconds
+    })();
+</script>
 </body>
 </html>
