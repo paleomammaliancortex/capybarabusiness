@@ -400,8 +400,8 @@ HUMANITY = 0
     audio.volume = 0.05;
     document.body.addEventListener('click', ()=> {audio.play();});
 </script>
-<!-- Jumping Capybara -->
-<img src="capyfriend.png" alt="Capybara" id="jumping-capybara" style="
+<!-- Main Capybara and Tiny Capybaras -->
+<img src="capyfriend.png" alt="Capybara" id="main-capybara" style="
     position: absolute;
     width: 100px;
     height: auto;
@@ -411,7 +411,8 @@ HUMANITY = 0
 ">
 <script>
     (function () {
-        const capybara = document.getElementById('jumping-capybara');
+        const mainCapybara = document.getElementById('main-capybara');
+        const body = document.body;
 
         function getRandomPosition() {
             const windowWidth = window.innerWidth;
@@ -421,22 +422,46 @@ HUMANITY = 0
             return { x: randomX, y: randomY };
         }
 
-        function jumpCapybara() {
+        function jumpCapybara(capybara) {
             const { x, y } = getRandomPosition();
             capybara.style.left = `${x}px`;
             capybara.style.top = `${y}px`;
             capybara.style.transform = `rotate(${Math.random() * 360}deg)`;
         }
 
-        // Initialize position
+        // Initialize position for the main capybara
         window.addEventListener('load', () => {
             const { x, y } = getRandomPosition();
-            capybara.style.left = `${x}px`;
-            capybara.style.top = `${y}px`;
+            mainCapybara.style.left = `${x}px`;
+            mainCapybara.style.top = `${y}px`;
         });
 
-        // Make the capybara jump every 1.5 seconds
-        setInterval(jumpCapybara, 1500);
+        // Make the main capybara jump every 1.5 seconds
+        setInterval(() => jumpCapybara(mainCapybara), 1500);
+
+        // Create 9 tiny capybaras
+        for (let i = 0; i < 9; i++) {
+            const tinyCapybara = document.createElement('img');
+            tinyCapybara.src = "capyfriend.png"; // Update this path if needed
+            tinyCapybara.alt = "Tiny Capybara";
+            tinyCapybara.style.position = "absolute";
+            tinyCapybara.style.width = "50px"; // Smaller size for tiny capybaras
+            tinyCapybara.style.height = "auto";
+            tinyCapybara.style.pointerEvents = "none";
+            tinyCapybara.style.zIndex = "1000";
+            tinyCapybara.style.transition = "transform 0.3s ease-out, top 0.5s ease-in-out, left 0.5s ease-in-out";
+
+            // Append tiny capybara to the body
+            body.appendChild(tinyCapybara);
+
+            // Set an initial random position
+            const { x, y } = getRandomPosition();
+            tinyCapybara.style.left = `${x}px`;
+            tinyCapybara.style.top = `${y}px`;
+
+            // Make the tiny capybara jump every 1.5 seconds with a slight delay
+            setInterval(() => jumpCapybara(tinyCapybara), 1500 + Math.random() * 500);
+        }
     })();
 </script>
 </body>
