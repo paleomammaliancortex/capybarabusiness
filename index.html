@@ -566,5 +566,98 @@ HUMANITY = 0
         });
     })();
 </script>
+<!-- Glitchy, Evil Capybaras -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script>
+    (function () {
+        const container = document.body;
+
+        // Create Three.js scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.domElement.style.position = 'absolute';
+        renderer.domElement.style.top = '0';
+        renderer.domElement.style.left = '0';
+        renderer.domElement.style.zIndex = '999';
+        container.appendChild(renderer.domElement);
+
+        // Add ambient red lighting for a creepy atmosphere
+        const ambientLight = new THREE.AmbientLight(0xff0000, 2); // Blood-red light
+        scene.add(ambientLight);
+
+        // Function to create a cursed capybara
+        function createCursedCapybara() {
+            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            const texture = new THREE.TextureLoader().load('hackerbara.png'); // Replace with your capybara PNG
+            const material = new THREE.MeshBasicMaterial({
+                map: texture,
+                color: 0xff0000, // Red tint
+                transparent: true,
+                opacity: 0.8,
+            });
+
+            const capybara = new THREE.Mesh(geometry, material);
+
+            // Add random distortion for the creepy effect
+            capybara.scale.set(
+                Math.random() * 3 + 1,
+                Math.random() * 0.5 + 0.2,
+                Math.random() * 2 + 1
+            );
+            capybara.rotation.set(
+                Math.random() * Math.PI,
+                Math.random() * Math.PI,
+                Math.random() * Math.PI
+            );
+            return capybara;
+        }
+
+        // Function to spawn a cursed capybara
+        function spawnCursedCapybara() {
+            const cursedCapybara = createCursedCapybara();
+
+            // Position randomly
+            cursedCapybara.position.set(
+                Math.random() * 10 - 5,
+                Math.random() * 5 - 2.5,
+                Math.random() * -10
+            );
+            scene.add(cursedCapybara);
+
+            // Flicker and remove after a few seconds
+            let flickerInterval = setInterval(() => {
+                cursedCapybara.material.opacity = cursedCapybara.material.opacity === 0.8 ? 0.3 : 0.8;
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(flickerInterval);
+                scene.remove(cursedCapybara);
+            }, 3000);
+        }
+
+        // Randomly spawn cursed capybaras
+        setInterval(() => {
+            if (Math.random() > 0.6) { // 40% chance to spawn
+                spawnCursedCapybara();
+            }
+        }, 4000);
+
+        // Animate the scene
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize renderer on window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    })();
+</script>
 </body>
 </html>
