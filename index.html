@@ -400,5 +400,44 @@ HUMANITY = 0
     audio.volume = 0.05;
     document.body.addEventListener('click', ()=> {audio.play();});
 </script>
+<!-- Jumping Capybara -->
+<img src="capyfriend.png" alt="Capybara" id="jumping-capybara" style="
+    position: absolute;
+    width: 100px;
+    height: auto;
+    pointer-events: none;
+    z-index: 1000;
+    transition: transform 0.3s ease-out, top 0.5s ease-in-out, left 0.5s ease-in-out;
+">
+<script>
+    (function () {
+        const capybara = document.getElementById('jumping-capybara');
+
+        function getRandomPosition() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const randomX = Math.floor(Math.random() * (windowWidth - 100)); // Keep it in bounds
+            const randomY = Math.floor(Math.random() * (windowHeight - 100));
+            return { x: randomX, y: randomY };
+        }
+
+        function jumpCapybara() {
+            const { x, y } = getRandomPosition();
+            capybara.style.left = `${x}px`;
+            capybara.style.top = `${y}px`;
+            capybara.style.transform = `rotate(${Math.random() * 360}deg)`;
+        }
+
+        // Initialize position
+        window.addEventListener('load', () => {
+            const { x, y } = getRandomPosition();
+            capybara.style.left = `${x}px`;
+            capybara.style.top = `${y}px`;
+        });
+
+        // Make the capybara jump every 1.5 seconds
+        setInterval(jumpCapybara, 1500);
+    })();
+</script>
 </body>
 </html>
