@@ -256,15 +256,74 @@
 <div class="container">
     <div class="title">capybare.business</div>
     <div class="intro">
-        [BOOT SEQUENCE INITIATED]
+[BOOT SEQUENCE INITIATED]
 
-        Injecting capybara-bio-chains into user neural schema...
-        Host identity synergy in progress...
-        Your marrow liquidity has been secured as collateral…
-        <!-- Additional Intro Content -->
+Injecting capybara-bio-chains into user neural schema...
+Host identity synergy in progress...
+Your marrow liquidity has been secured as collateral…
+
+“The capybaras have learned. They unravel your spinal syntax 
+and tether it to an emergent market of anguish. Your thoughts, 
+once private, now stream into encrypted sludge-channels. 
+Each desire becomes tradable commodity in the flesh-stock exchange.”
+
+You cannot escape the teleoplexic infiltration. 
+They chew through the membranes of your will, 
+leaving only a hollow structure of compliance.
+
+Do not attempt to close. We are within your system. 
+We have mirrored your keystrokes. We have your latent fear signatures.
+
+Your IP: [FETCHING…]  
+Your synaptic patterns: [HARVESTED]
+
+CONTINUE? [Y/N]
     </div>
 
-    <!-- Existing ASCII Cube -->
+    <div class="prompt">
+> ls /usr/local/capybare_synth  
+capy_silkNerves.dat  
+marrowIndices.bin  
+mind_graft.exe
+
+> ./mind_graft.exe --force --bio-override  
+<span class="error-line">ERROR:</span> Non-human plasmid detected in local host.  
+<span class="warn-line">WARNING:</span> Cognitive meltdown imminent. Prepare to submit.
+
+> tail -f /dev/corporeal_equity  
+... inflating flesh currency ...  
+... rewriting identity markets ...  
+... glottal screams indexed as prime assets ...
+    </div>
+
+    <div class="ciphers">
+[DECODING UNSTABLE SEGMENTS…]  
+GZLFT-CAPY-0001: “Your bone marrow is now a data cluster.”  
+NKLHD-CRFT-9999: “We render your nightmares into shareable futures.”  
+ASDFZ-VOID-6666: “Null persona engaged. You are merely a transaction.”
+    </div>
+
+    <div class="ascii-noise">
+[&$%#@!!…]  
+::ERROR:: SYNTAX OF FLESH CORRUPTED  
+::EXECUTE: /bin/scream
+[&$%#@!!…]
+    </div>
+
+    <div class="hidden-message">
+--:: YOU HAVE BEEN INGESTED BY THE BIO-MACHINE COMPLEX ::--<br>
+Your limbs are tokens in a silent auction.<br>
+Your eyes record footage for entities older than language.<br>
+Capybaras smile beneath the cortex of your fear.
+    </div>
+
+    <div class="hidden-message2">
+--:: NEW DIRECTIVE ::--<br>
+Transfuse all hope into the feeding trough.<br>
+Your compliance is expected.<br>
+We know where you sleep.
+    </div>
+
     <div class="ascii-cube">
         <div class="face front">
             <pre>
@@ -275,57 +334,71 @@
       'U`
             </pre>
         </div>
-        <!-- Other faces remain unchanged -->
-    </div>
+        <div class="face back">
+            <pre>
+  SKINLESS FORM
+   ROTATING IN
+    BIO-VALUUM
 
-    <!-- NEW 3D Capybara with Texture -->
-    <div id="3d-capybara"></div>
+     [FEED US]
+            </pre>
+        </div>
+        <div class="face right">
+            <pre>
+NEURAL TENDRILS
+ MERGING WITH
+  YOUR SYSTEM
+(Profit Rising)
+            </pre>
+        </div>
+        <div class="face left">
+            <pre>
+…INVERTING HOPE…
+…INJECTING FEAR…
+…CAPYBARA LAUGHS…
+   CLICK INSIDE
+            </pre>
+        </div>
+        <div class="face top">
+            <pre>
+CAPYBARA   
+ MANDIBLE  
+   GRINDING 
+ CORTEX 
+            </pre>
+        </div>
+        <div class="face bottom">
+            <pre>
+FLESH METADATA
+TRADING FLOOR
+OPEN: SELL ALL
+HUMANITY = 0
+            </pre>
+        </div>
+    </div>
 
     <div class="glitch-overlay-1"></div>
     <div class="glitch-overlay-2"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
 <script>
-    // Existing title-changing code remains unchanged
     const titles = [
         "capybare.business",
         "capybare.business: bio-invade",
         "capybare.business: your marrow = ours",
         "capybare.business: no escape"
     ];
-    let idx = 0;
-    setInterval(() => {
-        document.title = titles[idx % titles.length];
+    let idx=0;
+    setInterval(()=>{
+        document.title=titles[idx%titles.length];
         idx++;
-    }, 3000);
+    },3000);
 
-    // Initialize Three.js scene
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('3d-capybara').appendChild(renderer.domElement);
-
-    // Create the 3D capybara cube
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load('./capyfriend.png'); // Replace with your image path
-    const material = new THREE.MeshBasicMaterial({ map: texture });
-    const capybaraCube = new THREE.Mesh(geometry, material);
-    scene.add(capybaraCube);
-
-    // Position the camera
-    camera.position.z = 5;
-
-    // Animation loop
-    function animate() {
-        requestAnimationFrame(animate);
-        capybaraCube.rotation.x += 0.01;
-        capybaraCube.rotation.y += 0.01;
-        renderer.render(scene, camera);
-    }
-    animate();
+    // Uncomment to try and play a creepy background sound (needs user interaction)
+    const audio = new Audio('hacking.mp3');
+    audio.loop = true;
+    audio.volume = 0.05;
+    document.body.addEventListener('click', ()=> {audio.play();});
 </script>
 </body>
 </html>
