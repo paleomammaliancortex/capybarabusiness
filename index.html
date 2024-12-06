@@ -261,6 +261,28 @@
             color: #ffff00;
             text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
         }
+.choices {
+    text-align: center;
+    margin-top: 20px; /* Adjust as needed to align with your content */
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.choice {
+    color: #ff0000;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.choice:hover {
+    color: #ffff00;
+    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+}
+
+.divider {
+    color: #ffffff;
+}
 </style>
 </head>
 <body>
@@ -672,5 +694,10 @@ HUMANITY = 0
         }
     });
 </script>
+<div class="choices">
+    [<span class="choice" onclick="window.location.href='yes.html'">Y</span>
+    <span class="divider">/</span>
+    <span class="choice" onclick="window.location.href='nope.html'">N</span>]
+</div>
 </body>
 </html>
