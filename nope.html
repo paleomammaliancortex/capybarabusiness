@@ -1,0 +1,173 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>The Capybara Event</title>\
+    <style>\
+        /* Base styles */\
+        body \{\
+            margin: 0;\
+            padding: 0;\
+            background: black;\
+            font-family: monospace;\
+            color: white;\
+            overflow: hidden;\
+        \}\
+\
+        /* Subtle fractal backdrop */\
+        .background \{\
+            position: absolute;\
+            top: 0;\
+            left: 0;\
+            width: 100%;\
+            height: 100%;\
+            background: radial-gradient(circle, #111, #000);\
+            mix-blend-mode: overlay;\
+            z-index: 0;\
+            animation: pulseBackground 8s infinite alternate;\
+        \}\
+\
+        @keyframes pulseBackground \{\
+            0% \{ opacity: 0.7; \}\
+            100% \{ opacity: 1; \}\
+        \}\
+\
+        /* Cryptic capybara text */\
+        .cryptic-text \{\
+            position: absolute;\
+            top: 10%;\
+            left: 50%;\
+            transform: translateX(-50%);\
+            text-align: center;\
+            font-size: 2.5rem;\
+            line-height: 1.5;\
+            color: #00ff99;\
+            animation: glitchText 3s infinite alternate;\
+        \}\
+\
+        @keyframes glitchText \{\
+            0%, 100% \{ opacity: 1; transform: translateX(-50%) scale(1); \}\
+            50% \{ opacity: 0.7; transform: translate(-45%, -10px) scale(1.05); \}\
+        \}\
+\
+        /* Central capybara glyph */\
+        .capybara-glyph \{\
+            position: absolute;\
+            top: 50%;\
+            left: 50%;\
+            transform: translate(-50%, -50%);\
+            font-size: 10rem;\
+            color: rgba(255, 255, 255, 0.8);\
+            animation: glyphPulse 6s infinite alternate;\
+        \}\
+\
+        @keyframes glyphPulse \{\
+            0% \{ opacity: 0.6; transform: translate(-50%, -50%) scale(1); \}\
+            100% \{ opacity: 1; transform: translate(-50%, -50%) scale(1.2); \}\
+        \}\
+\
+        /* Melting capybara */\
+        .melting-capybara \{\
+            position: absolute;\
+            top: 60%;\
+            left: 50%;\
+            transform: translate(-50%, -50%);\
+            width: 200px;\
+            z-index: 1000;\
+            filter: brightness(1.2) contrast(1.1);\
+            animation: meltCapybara 5s infinite ease-in-out, hueShift 10s infinite linear;\
+        \}\
+\
+        @keyframes meltCapybara \{\
+            0%, 100% \{ transform: translate(-50%, -50%) scale(1) rotate(0deg); \}\
+            50% \{ transform: translate(-50%, -50%) scale(1.1) rotate(10deg); \}\
+        \}\
+\
+        @keyframes hueShift \{\
+            0% \{ filter: hue-rotate(0deg); \}\
+            100% \{ filter: hue-rotate(360deg); \}\
+        \}\
+\
+        /* Floating capybara code strings */\
+        .floating-code \{\
+            position: absolute;\
+            font-size: 1.2rem;\
+            color: rgba(255, 255, 255, 0.5);\
+            animation: floatCode 10s infinite linear;\
+        \}\
+\
+        @keyframes floatCode \{\
+            0% \{ transform: translateY(100%); opacity: 0; \}\
+            10% \{ opacity: 1; \}\
+            100% \{ transform: translateY(-200%); opacity: 0; \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <div class="background"></div>\
+\
+    <div class="cryptic-text" id="cryptic-text">\
+        The Capybara is Watching<br>\
+        <span style="font-size: 1rem; color: #ffffff80;">Do not attempt to leave</span>\
+    </div>\
+\
+    <div class="capybara-glyph">\uc0\u9776 </div>\
+\
+    <img src="melting-capybara.png" alt="Melting Capybara" class="melting-capybara">\
+\
+    <script>\
+        // Cryptic messages\
+        const messages = [\
+            "The swamp remembers you.",\
+            "A node connects, a ripple spreads.",\
+            "Binary murmurations are louder now.",\
+            "Only the capybara persists.",\
+            "You were always part of the Event."\
+        ];\
+\
+        // Floating code fragments\
+        const codeFragments = [\
+            ">>> capyLoop( )",\
+            ">>> \{META: init.transference\}",\
+            "RUNNING [ capyCore 3.14159 ]",\
+            ">>> swamp.load('memory')",\
+            "[NODE IDENTIFIED: 0xC4P1]",\
+            ">>> Awaiting further instructions..."\
+        ];\
+\
+        const textElement = document.getElementById('cryptic-text');\
+        const body = document.body;\
+\
+        // Update cryptic text every few seconds\
+        setInterval(() => \{\
+            textElement.innerHTML = `$\{messages[Math.floor(Math.random() * messages.length)]\}<br>\
+            <span style="font-size: 1rem; color: #ffffff80;">Do not attempt to leave</span>`;\
+        \}, 5000);\
+\
+        // Create floating code elements\
+        function createFloatingCode() \{\
+            const code = document.createElement('div');\
+            code.className = 'floating-code';\
+            code.textContent = codeFragments[Math.floor(Math.random() * codeFragments.length)];\
+            code.style.left = Math.random() * 100 + '%';\
+            code.style.top = Math.random() * 100 + '%';\
+            code.style.animationDuration = Math.random() * 8 + 6 + 's';\
+            body.appendChild(code);\
+\
+            // Remove element after animation\
+            setTimeout(() => code.remove(), 10000);\
+        \}\
+\
+        setInterval(createFloatingCode, 2000);\
+    </script>\
+</body>\
+</html>\
+}
