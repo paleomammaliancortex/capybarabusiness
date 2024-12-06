@@ -653,5 +653,12 @@ HUMANITY = 0
         }, Math.random() * 5000 + 5000); // Random interval between 5-10 seconds
     })();
 </script>
+<script>
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'N' || event.key === 'n') {
+            window.location.href = 'nope.html';
+        }
+    });
+</script>
 </body>
 </html>
