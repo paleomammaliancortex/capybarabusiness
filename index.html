@@ -250,6 +250,17 @@
         40%,50% {opacity:1;}
     }
 
+        .clickable {
+            color: #ff0000;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .clickable:hover {
+            color: #ffff00;
+            text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+        }
 </style>
 </head>
 <body>
@@ -277,7 +288,22 @@ We have mirrored your keystrokes. We have your latent fear signatures.
 Your IP: [FETCHING…]  
 Your synaptic patterns: [HARVESTED]
 
-CONTINUE? [Y/N]
+CONTINUE? [<span class="clickable" id="yes-option">Y</span>/<span class="clickable" id="no-option">N</span>]
+    </div>
+
+    <script>
+        // Add a click event to the "Y" span
+        document.getElementById('yes-option').addEventListener('click', () => {
+            // Redirect to yes.html
+            window.location.href = 'yes.html';
+        });
+
+        // Add a click event to the "N" span
+        document.getElementById('no-option').addEventListener('click', () => {
+            // Redirect to nope.html
+            window.location.href = 'nope.html';
+        });
+    </script>
     </div>
 
     <div class="prompt">
