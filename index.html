@@ -944,7 +944,8 @@ HUMANITY = 0
 </style>
 <!-- Background YouTube Player -->
 <div class="background-youtube">
-    <iframe id="youtube-player" src="https://www.youtube.com/watch?v=o7fgFaXKVa0" 
+    <iframe id="youtube-player" 
+        src="https://www.youtube.com/watch?v=o7fgFaXKVa0" 
         allow="autoplay" 
         frameborder="0" 
         style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none; opacity: 0;"
@@ -964,7 +965,13 @@ HUMANITY = 0
 }
 </style>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ensure autoplay starts without user interaction
+        const iframe = document.getElementById('youtube-player');
+        iframe.src += "&autoplay=1";
+    });
+</script>
 
 </body>
 </div>
