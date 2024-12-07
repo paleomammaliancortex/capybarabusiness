@@ -513,7 +513,7 @@ HUMANITY = 0
     },3000);
 
     // Uncomment to try and play a creepy background sound (needs user interaction)
-    const audio = new Audio('makemymidi.mid');
+    const audio = new Audio('coolmusic.wav');
     audio.loop = true;
     audio.volume = 0.05;
     document.body.addEventListener('click', ()=> {audio.play();});
@@ -839,13 +839,13 @@ HUMANITY = 0
 <div class="ticker-container">
     <div class="ticker">
         <span class="ticker-item positive">CAPY.NIPA ▲ 1243.5 +3.2%</span>
-        <span class="ticker-item negative">NOVO.CAPY ▼ 943.2 -1.8%</span>
+        <span class="ticker-item negative">NOVO.CAPY.PERFORMANCE (ACC) ▼ 943.2 -1.8%</span>
         <span class="ticker-item positive">OKIPULLUP.BONDS ▲ 3210.9 +8.1%</span>
         <span class="ticker-item positive">DOGECUM ▲ 2987.7 +5.6%</span>
         <span class="ticker-item negative">SLAM-WACK.FANDANGO.COIN ▼ 123.8 -0.4%</span>
         <span class="ticker-item positive">MARROW.LIQUIDITY ▲ 4312.0 +6.3%</span>
-        <span class="ticker-item negative">MEMBRANE.INVEST ▼ 564.1 -2.7%</span>
-        <span class="ticker-item positive">EROTIC.CAPY.NETWORK ▲ 987.6 +4.9%</span>
+        <span class="ticker-item negative">PALEOMAMMALIAN.INVEST ▼ 564.1 -2.7%</span>
+        <span class="ticker-item positive">ESOTERIC.CAPY.NETWORK ▲ 987.6 +4.9%</span>
     </div>
 </div>
 
@@ -941,38 +941,6 @@ HUMANITY = 0
     text-shadow: 0 0 10px #ffff00;
     cursor: pointer;
 }
-</style>
-<!-- Background YouTube Player -->
-<div class="background-youtube">
-    <iframe id="youtube-player" 
-        src="https://www.youtube.com/watch?v=o7fgFaXKVa0" 
-        allow="autoplay" 
-        frameborder="0" 
-        style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none; opacity: 0;"
-        title="Background Music">
-    </iframe>
-</div>
-
-<style>
-/* Optional: Hide the YouTube player visually */
-.background-youtube {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    z-index: -1;
-}
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Ensure autoplay starts without user interaction
-        const iframe = document.getElementById('youtube-player');
-        iframe.src += "&autoplay=1";
-    });
-</script>
-
 </body>
 </div>
 </body>
