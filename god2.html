@@ -285,4 +285,49 @@
             setTimeout(() => message.remove(), 1000);
         }
         function triggerCurse(level) {
-    deathCount +=
+    deathCount += level;
+    document.getElementById('kill-counter').textContent = `DEATHS: ${deathCount}`;
+    
+    // Play sound on click
+    const clickSound = new Audio('  Whispers.wav'); // Replace with your sound file's URL or path
+    clickSound.play();
+
+    // Other effects...
+    const randomText = disturbing_texts[Math.floor(Math.random() * disturbing_texts.length)];
+    const message = document.createElement('div');
+    message.className = 'hidden-message';
+    message.textContent = randomText;
+    document.body.appendChild(message);
+    
+    setTimeout(() => message.remove(), 1000);
+}
+
+        createCapyGrid();
+
+        function triggerCurse(level) {
+    deathCount += level;
+    document.getElementById('kill-counter').textContent = `DEATHS: ${deathCount}`;
+    
+    if (level === 999) {
+        // Redirect to god3.html
+        window.location.href = 'god3.html';
+        return;
+    }
+
+    // Play sound
+    const clickSound = new Audio('Whispers.wav'); // Replace with your sound file's URL or path
+    clickSound.play();
+
+    // Other effects
+    const randomText = disturbing_texts[Math.floor(Math.random() * disturbing_texts.length)];
+    const message = document.createElement('div');
+    message.className = 'hidden-message';
+    message.textContent = randomText;
+    document.body.appendChild(message);
+
+    setTimeout(() => message.remove(), 1000);
+}
+    </script>
+
+</body>
+</html>
