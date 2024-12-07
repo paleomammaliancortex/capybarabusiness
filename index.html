@@ -637,4 +637,336 @@ HUMANITY = 0
             // Position randomly
             cursedCapybara.position.set(
                 Math.random() * 10 - 5,
-                Math.random
+                Math.random() * 5 - 2.5,
+                Math.random() * -10
+            );
+            scene.add(cursedCapybara);
+
+            // Flicker and remove after a few seconds
+            let flickerInterval = setInterval(() => {
+                cursedCapybara.material.opacity = cursedCapybara.material.opacity === 0.8 ? 0.3 : 0.8;
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(flickerInterval);
+                scene.remove(cursedCapybara);
+            }, 3000);
+        }
+
+        // Randomly spawn cursed capybaras
+        setInterval(() => {
+            if (Math.random() > 0.6) { // 40% chance to spawn
+                spawnCursedCapybara();
+            }
+        }, 4000);
+
+        // Animate the scene
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize renderer on window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    })();
+</script>
+    <!-- Cursed Capybara Popup -->
+<style>
+    .cursed-capybara {
+        position: absolute;
+        width: 150px;
+        height: auto;
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .cryptic-text {
+        position: absolute;
+        font-family: monospace;
+        font-size: 14px;
+        color: #ff0000;
+        text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+        opacity: 0;
+        z-index: 1001;
+        white-space: pre-wrap;
+        transition: opacity 0.5s ease-in-out;
+    }
+</style>
+
+<img src="cursed-capybara.png" alt="Cursed Capybara" id="cursed-capybara" class="cursed-capybara">
+
+<div id="cryptic-text" class="cryptic-text"></div>
+
+<script>
+    (function () {
+        const capybaraFacts = [
+            "Capybaras are social animals, but they\nalways know who’s watching...",
+            "In the dark, capybaras whisper secrets\nof the marshlands...",
+            "Their teeth never stop growing,\njust like your fears...",
+            "A group of capybaras is called a\n'meditation'... ironic, isn't it?",
+            "Capybaras can sleep in water...\nbut they never truly rest.",
+            "Under the full moon, they\nsee beyond the veil...",
+        ];
+
+        const cursedCapybara = document.getElementById('cursed-capybara');
+        const crypticText = document.getElementById('cryptic-text');
+
+        function getRandomPosition() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const randomX = Math.random() * (windowWidth - 150); // Prevent overflow
+            const randomY = Math.random() * (windowHeight - 150);
+            return { x: randomX, y: randomY };
+        }
+
+        function showCursedCapybara() {
+            const { x, y } = getRandomPosition();
+            cursedCapybara.style.left = `${x}px`;
+            cursedCapybara.style.top = `${y}px`;
+
+            const randomFact = capybaraFacts[Math.floor(Math.random() * capybaraFacts.length)];
+            crypticText.textContent = randomFact;
+            crypticText.style.left = `${x}px`;
+            crypticText.style.top = `${y + 160}px`;
+
+            cursedCapybara.style.opacity = 1;
+            crypticText.style.opacity = 1;
+
+            setTimeout(() => {
+                cursedCapybara.style.opacity = 0;
+                crypticText.style.opacity = 0;
+            }, 4000); // Visible for 4 seconds
+        }
+
+        // Randomly show the cursed capybara with text every 5-10 seconds
+        setInterval(() => {
+            if (Math.random() > 0.5) { // 50% chance to trigger
+                showCursedCapybara();
+            }
+        }, Math.random() * 5000 + 5000); // Random interval between 5-10 seconds
+    })();
+</script>
+<script>
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'N' || event.key === 'n') {
+            window.location.href = 'nope.html';
+        }
+    });
+</script>
+<script>
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Y' || event.key === 'y') {
+            window.location.href = 'yes.html';
+        }
+    });
+</script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        color: #0f0;
+        font-family: monospace;
+        overflow: hidden;
+        cursor: pointer;
+        perspective: 1000px;
+    }
+
+    .continue-container {
+        position: fixed; /* Fixed at the bottom of the screen */
+        bottom: 210px;
+        left: 20%; /* Center horizontally */
+        transform: translateX(-50%); /* Center alignment */
+        z-index: 9999; /* Bring it to the topmost layer */
+        background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+        padding: 10px 20px;
+        border: 2px solid #0f0; /* Green border for styling */
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 0 10px #0f0; /* Glowing effect */
+    }
+
+    .continue-container .key {
+        cursor: pointer; /* Makes it look clickable */
+        text-shadow: 0 0 5px #0f0; /* Glow effect for the keys */
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+        padding: 0 5px; /* Add some padding around keys */
+    }
+
+    .continue-container .key:hover {
+        color: #ffff00; /* Yellow on hover */
+        text-shadow: 0 0 10px #ffff00;
+    }
+</style>
+</head>
+<body>
+<!-- Other content of your page -->
+
+<div class="continue-container">
+    CONTINUE? [<span class="key" id="key-y">Y</span>/<span class="key" id="key-n">N</span>]
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const keyY = document.getElementById("key-y");
+        const keyN = document.getElementById("key-n");
+
+        if (keyY && keyN) {
+            keyY.addEventListener("click", () => handleRedirect("yes.html"));
+            keyN.addEventListener("click", () => handleRedirect("nope.html"));
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key.toLowerCase() === "y") {
+                    handleRedirect("yes.html");
+                } else if (event.key.toLowerCase() === "n") {
+                    handleRedirect("nope.html");
+                }
+            });
+        }
+
+        function handleRedirect(url) {
+            window.location.href = url;
+        }
+    });
+</script>
+<!-- Capybara Stocks Ticker -->
+<div class="ticker-container">
+    <div class="ticker">
+        <span class="ticker-item positive">CAPY.NIPA ▲ 1243.5 +3.2%</span>
+        <span class="ticker-item negative">NOVO.CAPY ▼ 943.2 -1.8%</span>
+        <span class="ticker-item positive">OKIPULLUP.BONDS ▲ 3210.9 +8.1%</span>
+        <span class="ticker-item positive">DOGECUM ▲ 2987.7 +5.6%</span>
+        <span class="ticker-item negative">SLAM-WACK.FANDANGO.COIN ▼ 123.8 -0.4%</span>
+        <span class="ticker-item positive">MARROW.LIQUIDITY ▲ 4312.0 +6.3%</span>
+        <span class="ticker-item negative">MEMBRANE.INVEST ▼ 564.1 -2.7%</span>
+        <span class="ticker-item positive">EROTIC.CAPY.NETWORK ▲ 987.6 +4.9%</span>
+    </div>
+</div>
+
+<style>
+/* Ticker container */
+.ticker-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+    z-index: 10000; /* Ensure it's always on top */
+    border-bottom: 2px solid #0f0;
+    box-shadow: 0 0 10px #0f0;
+    height: 20px; /* Adjusted height */
+    display: flex;
+    align-items: center;
+}
+
+/* Scrolling text */
+.ticker {
+    display: flex;
+    animation: ticker-scroll 20s linear infinite;
+    white-space: nowrap;
+    height: 100%; /* Ensure it fills the ticker container */
+}
+
+@keyframes ticker-scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Ticker item styling */
+.ticker-item {
+    display: inline-block;
+    padding: 0 30px;
+    font-size: 0.8rem; /* Adjusted size for smaller height */
+    font-family: monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #0f0;
+}
+
+/* Positive stocks */
+.ticker-item.positive {
+    color: #0f0;
+    animation: flicker-positive 3s infinite;
+}
+
+@keyframes flicker-positive {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    75% {
+        opacity: 0.9;
+    }
+    25% {
+        opacity: 0.95;
+    }
+}
+
+/* Negative stocks */
+.ticker-item.negative {
+    color: #f00;
+    text-shadow: 0 0 5px #f00;
+    animation: flicker-negative 3s infinite;
+}
+
+@keyframes flicker-negative {
+    0%, 100% {
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    75% {
+        opacity: 0.8;
+    }
+    25% {
+        opacity: 0.85;
+    }
+}
+
+/* Hover effect */
+.ticker-item:hover {
+    color: #ffff00;
+    text-shadow: 0 0 10px #ffff00;
+    cursor: pointer;
+}
+</style>
+<!-- Background YouTube Player -->
+<div class="background-youtube">
+    <iframe id="youtube-player" src="https://www.youtube.com/watch?v=o7fgFaXKVa0" 
+        allow="autoplay" 
+        frameborder="0" 
+        style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none; opacity: 0;"
+        title="Background Music">
+    </iframe>
+</div>
+
+<style>
+/* Optional: Hide the YouTube player visually */
+.background-youtube {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+}
+</style>
+
+
+
+</body>
+</div>
+</body>
+</html>
