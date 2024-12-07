@@ -1,106 +1,149 @@
-    ​<!DOCTYPE html>
-    <html lang="en">
-        <!DOCTYPE html>
+​
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Capybara Surveillance Network</title>
-        <style>
-            body {
-                background: black;
-                color: limegreen;
-                font-family: "Courier New", Courier, monospace;
-                margin: 0;
-                overflow: hidden; /* Prevent scrolling */
-            }
-            #overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 10);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999; /* Ensure it's on top */
-            }
-            #capybara {
-                text-align: center;
-                font-size: 30px;
-                color: limegreen;
-                cursor: pointer;
-                border: 2px solid limegreen;
-                padding: 20px;
-                animation: flicker 1s infinite;
-            }
-            @keyframes flicker {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0.8; }
-            }
-            #content {
-                display: none; /* Hide the main content until interaction */
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Overlay -->
-        <div id="overlay">
-            <div id="capybara">
-                 PRESS TO ENTER CAPYBARA BUSINESS
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
 
-        <script>
-            // Titles for the joke
-            const titles = [
-                "Capybara Surveillance Active",
-                "🐾 Deploying Cyber Capybaras 🐾",
-                "Nick Land Was Right",
-                "Downloading Hacker Memes...",
-                "Press For Ultimate Truth"
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capybara Surveillance Network</title>
+    <style>
+        body {
+            background: black;
+            color: limegreen;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            overflow: hidden;
+            /* Prevent scrolling */
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 10);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Ensure it's on top */
+        }
+
+        #capybara {
+            text-align: center;
+            font-size: 30px;
+            color: limegreen;
+            cursor: pointer;
+            border: 2px solid limegreen;
+            padding: 20px;
+            animation: flicker 1s infinite;
+        }
+
+        @keyframes flicker {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        #content {
+            display: none;
+            /* Hide the main content until interaction */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Overlay -->
+    <div id="overlay">
+        <div id="capybara">
+            PRESS TO ENTER CAPYBARA BUSINESS
+        </div>
+    </div>
+
+    <script>
+        // Titles for the joke
+        const titles = [
+            "Capybara Surveillance Active",
+            "🐾 Deploying Cyber Capybaras 🐾",
+            "Nick Land Was Right",
+            "Downloading Hacker Memes...",
+            "Press For Ultimate Truth"
+        ];
+        let idx = 0;
+
+        // Change title every 3 seconds
+        setInterval(() => {
+            document.title = titles[idx % titles.length];
+            idx++;
+        }, 3000);
+
+        // Create Audio
+        const audio = new Audio('iamfalling.mp3'); // Replace with your mp3 file
+        audio.loop = true;
+        audio.volume = 0.05;
+
+        // Overlay Interaction
+        const overlay = document.getElementById('overlay');
+        const capybara = document.getElementById('capybara');
+        const content = document.getElementById('content');
+
+        capybara.addEventListener('mouseover', () => {
+            capybara.textContent = "PRESS TO TRANSCEND THE SYMPARANEKROMENOI OF BEING";
+        });
+
+        // Add click event listener to the element
+        capybara.addEventListener('click', () => {
+            // Change text content
+            capybara.textContent = "LOADING... ₍ᐢ-(ｪ)-ᐢ₎▶︎ •၊၊||၊|။||||။‌‌‌‌‌၊|• 3:32";
+            capybara.style.fontSize = "40px";
+
+            // Define colors to cycle through
+            const colors = [
+                "#ff9a9e", // pastel pink
+                "#fad0c4", // light pink
+                "#fbc2eb", // soft purple
+                "#a1c4fd", // sky blue
+                "#c3cfe2", // light periwinkle
+                "#d4fc79", // lime green
+                "#96e6a1", // mint green
             ];
-            let idx = 0;
-    
-            // Change title every 3 seconds
-            setInterval(() => {
-                document.title = titles[idx % titles.length];
-                idx++;
-            }, 3000);
-    
-            // Create Audio
-            const audio = new Audio('iamfalling.mp3'); // Replace with your mp3 file
-            audio.loop = true;
-            audio.volume = 0.05;
-    
-            // Overlay Interaction
-            const overlay = document.getElementById('overlay');
-            const capybara = document.getElementById('capybara');
-            const content = document.getElementById('content');
-    
-            capybara.addEventListener('mouseover', () => {
-                capybara.textContent = "PRESS TO ESCAPE THE LOOP OF MODERNITY";
-            });
-    
-            capybara.addEventListener('click', () => {
-                capybara.textContent = "LOADING... ₍ᐢ-(ｪ)-ᐢ₎▶︎ •၊၊||၊|။||||။‌‌‌‌‌၊|• 3:32";
-                capybara.style.color = "purple";
-                capybara.style.fontSize = "40px";
-    
-                // Play audio
-                audio.play().catch(err => console.error("Audio playback failed:", err));
-    
-                // Remove overlay and show content
-                setTimeout(() => {
-                    overlay.style.display = "none";
-                    content.style.display = "block";
-                    document.body.style.overflow = "auto"; // Enable scrolling
-                }, 2000);
-            });
-        </script>
-    </body>
-    
+            let currentColorIndex = 0;
+
+            // Create an interval to change colors
+            const blinkInterval = setInterval(() => {
+                capybara.style.color = colors[currentColorIndex];
+                currentColorIndex = (currentColorIndex + 1) % colors.length; // Loop through colors
+            }, 100); // Change color every 500 milliseconds
+
+            // Stop blinking after 10 seconds
+            setTimeout(() => {
+                clearInterval(blinkInterval); // Clear the interval
+                capybara.style.color = "white"; // Reset to default color
+            }, 10000); // 10 seconds
+
+
+            // Play audio
+            audio.play().catch(err => console.error("Audio playback failed:", err));
+
+            // Remove overlay and show content
+            setTimeout(() => {
+                overlay.style.display = "none";
+                content.style.display = "block";
+                document.body.style.overflow = "auto"; // Enable scrolling
+            }, 2000);
+        });
+    </script>
+</body>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,6 +156,7 @@
             color: #fff;
             overflow: hidden;
         }
+
         .overlay {
             position: fixed;
             top: 0;
@@ -126,10 +170,12 @@
             z-index: 9999;
             flex-direction: column;
         }
+
         .overlay h1 {
             font-size: 2rem;
             margin-bottom: 20px;
         }
+
         .force-button {
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -139,6 +185,7 @@
             cursor: pointer;
             transition: background 0.3s;
         }
+
         .force-button:hover {
             background: #666;
         }
@@ -147,433 +194,651 @@
 
 </html>
 
-    <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>capybare.business</title>
     <style>
         body {
-            margin:0; padding:0;
-            background:#000;
-            color:#0f0;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #0f0;
             font-family: monospace;
-            overflow:hidden;
+            overflow: hidden;
             cursor: pointer;
-            perspective:1000px;
+            perspective: 1000px;
         }
 
         /* Overall flicker of the scene */
         @keyframes sceneWaves {
-            0%,20%,50%,70%,100% {filter: none;}
-            10% { filter: blur(1px) brightness(1.2); }
-            30% { filter: contrast(2) hue-rotate(90deg); }
-            60% { filter: hue-rotate(180deg) invert(1); }
-            80% { filter: brightness(0.8) contrast(3); }
+
+            0%,
+            20%,
+            50%,
+            70%,
+            100% {
+                filter: none;
+            }
+
+            10% {
+                filter: blur(1px) brightness(1.2);
+            }
+
+            30% {
+                filter: contrast(2) hue-rotate(90deg);
+            }
+
+            60% {
+                filter: hue-rotate(180deg) invert(1);
+            }
+
+            80% {
+                filter: brightness(0.8) contrast(3);
+            }
         }
 
         .container {
-            position:relative;
-            width:100vw; height:100vh;
-            padding:20px;
-            box-sizing:border-box;
-            animation:sceneWaves 5s infinite;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            animation: sceneWaves 5s infinite;
             transform-style: preserve-3d;
         }
 
         /* The title: flickering, glitching, rotating */
         .title {
-            font-size:3em;
-            text-shadow:0 0 10px #0f0;
+            font-size: 3em;
+            text-shadow: 0 0 10px #0f0;
             animation: glitchTitle 3s infinite;
             transform: translateZ(100px) rotateY(10deg);
         }
 
         @keyframes glitchTitle {
-            0%,100% { color:#0f0; text-shadow:0 0 10px #0f0;}
-            10% { color:#f00; text-shadow:-2px 0 #f00;}
-            20% { color:#00f; text-shadow:2px 0 #00f;}
-            30% { color:#0f0; text-shadow:0 0 10px #0f0; }
-            40% { color:#ff0; text-shadow:0px -2px #ff0;}
-            50% { color:#0f0; }
-            60% { color:#0f0; transform:rotateY(180deg);}
-            70% { color:#f0f; transform:rotateY(0deg);}
-            80% { color:#0f0;}
+
+            0%,
+            100% {
+                color: #0f0;
+                text-shadow: 0 0 10px #0f0;
+            }
+
+            10% {
+                color: #f00;
+                text-shadow: -2px 0 #f00;
+            }
+
+            20% {
+                color: #00f;
+                text-shadow: 2px 0 #00f;
+            }
+
+            30% {
+                color: #0f0;
+                text-shadow: 0 0 10px #0f0;
+            }
+
+            40% {
+                color: #ff0;
+                text-shadow: 0px -2px #ff0;
+            }
+
+            50% {
+                color: #0f0;
+            }
+
+            60% {
+                color: #0f0;
+                transform: rotateY(180deg);
+            }
+
+            70% {
+                color: #f0f;
+                transform: rotateY(0deg);
+            }
+
+            80% {
+                color: #0f0;
+            }
         }
 
         /* Intense intro text block, flickering and distorting */
         .intro {
-            margin-top:20px;
-            max-width:800px;
-            line-height:1.4em;
-            position:relative;
-            white-space:pre-wrap;
-            font-size:1em;
+            margin-top: 20px;
+            max-width: 800px;
+            line-height: 1.4em;
+            position: relative;
+            white-space: pre-wrap;
+            font-size: 1em;
             animation: textShudder 5s infinite;
             transform: translateZ(50px) rotateX(5deg);
         }
 
         @keyframes textShudder {
-            0%,100% {opacity:1;transform:translateX(0);}
-            10% {opacity:0.8; transform:translateX(2px);}
-            20% {opacity:0.6; transform:translateX(-2px);}
-            30% {opacity:0.9; transform:translateX(1px);}
-            40% {opacity:1; transform:translateX(-1px);}
-            50% {opacity:0.7; transform:translateY(-1px);}
-            60% {opacity:0.8; transform:translateY(1px);}
-            70% {opacity:1; transform:translateX(0);}
-            90% {opacity:0.5; transform:translateX(-3px);}
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            10% {
+                opacity: 0.8;
+                transform: translateX(2px);
+            }
+
+            20% {
+                opacity: 0.6;
+                transform: translateX(-2px);
+            }
+
+            30% {
+                opacity: 0.9;
+                transform: translateX(1px);
+            }
+
+            40% {
+                opacity: 1;
+                transform: translateX(-1px);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: translateY(-1px);
+            }
+
+            60% {
+                opacity: 0.8;
+                transform: translateY(1px);
+            }
+
+            70% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            90% {
+                opacity: 0.5;
+                transform: translateX(-3px);
+            }
         }
 
         /* Multiple glitch overlays, lines, and shapes */
-        .glitch-overlay-1, .glitch-overlay-2 {
-            position:absolute;
-            top:0;left:0;right:0;bottom:0;
-            pointer-events:none;
-            mix-blend-mode:difference;
+        .glitch-overlay-1,
+        .glitch-overlay-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            mix-blend-mode: difference;
         }
 
         .glitch-overlay-1 {
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0,255,0,0.05),
-                rgba(0,255,0,0.05) 1px,
-                rgba(0,0,0,0.1) 1px,
-                rgba(0,0,0,0.1) 2px
-            );
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 255, 0, 0.05),
+                    rgba(0, 255, 0, 0.05) 1px,
+                    rgba(0, 0, 0, 0.1) 1px,
+                    rgba(0, 0, 0, 0.1) 2px);
             animation: overlayShift 2s infinite;
         }
 
         .glitch-overlay-2 {
-            background: repeating-linear-gradient(
-                90deg,
-                rgba(0,255,0,0.02),
-                rgba(0,255,0,0.02) 2px,
-                rgba(0,0,0,0.1) 2px,
-                rgba(0,0,0,0.1) 4px
-            );
+            background: repeating-linear-gradient(90deg,
+                    rgba(0, 255, 0, 0.02),
+                    rgba(0, 255, 0, 0.02) 2px,
+                    rgba(0, 0, 0, 0.1) 2px,
+                    rgba(0, 0, 0, 0.1) 4px);
             animation: overlayShift2 3s infinite;
         }
 
         @keyframes overlayShift {
-            0% {transform:translateY(0);}
-            50% {transform:translateY(-10px);}
-            100% {transform:translateY(0);}
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
         }
+
         @keyframes overlayShift2 {
-            0% {transform:translateX(0);}
-            50% {transform:translateX(-5px);}
-            100% {transform:translateX(0);}
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
         }
 
         /* ASCII capybara terror cube */
         .ascii-cube {
-            position:absolute;
-            width:250px; height:250px;
-            top:50%; left:50%;
-            transform: translate(-50%,-50%) rotateX(30deg) rotateY(40deg);
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(30deg) rotateY(40deg);
             transform-style: preserve-3d;
             animation: cubeSpin 20s infinite linear;
-            z-index:999;
+            z-index: 999;
         }
 
         @keyframes cubeSpin {
-            0% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(40deg);}
-            25% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(130deg);}
-            50% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(220deg);}
-            75% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(310deg);}
-            100% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(400deg);}
+            0% {
+                transform: translate(-50%, -50%) rotateX(30deg) rotateY(40deg);
+            }
+
+            25% {
+                transform: translate(-50%, -50%) rotateX(30deg) rotateY(130deg);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) rotateX(30deg) rotateY(220deg);
+            }
+
+            75% {
+                transform: translate(-50%, -50%) rotateX(30deg) rotateY(310deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotateX(30deg) rotateY(400deg);
+            }
         }
 
         .face {
-            position:absolute;
-            width:100%; height:100%;
-            backface-visibility:hidden;
-            background:#001000;
-            display:flex;
-            align-items:center;justify-content:center;
-            color:#0f0;
-            font-size:0.7em;
-            padding:10px;
-            box-sizing:border-box;
-            text-align:center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: #001000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f0;
+            font-size: 0.7em;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        .front {transform: translateZ(125px);}
-        .back {transform: rotateY(180deg) translateZ(125px);}
-        .right {transform: rotateY(90deg) translateZ(125px);}
-        .left {transform: rotateY(-90deg) translateZ(125px);}
-        .top {transform: rotateX(90deg) translateZ(125px);}
-        .bottom {transform: rotateX(-90deg) translateZ(125px);}
+        .front {
+            transform: translateZ(125px);
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(125px);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(125px);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(125px);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(125px);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(125px);
+        }
 
         /* ASCII inside the cube faces - horrifying cryptic messages */
         .face pre {
-            white-space:pre;
-            line-height:1em;
+            white-space: pre;
+            line-height: 1em;
         }
 
         /* Hidden infiltration messages appear randomly */
         .hidden-message {
-            position:absolute;
-            top:30%; left:10%;
-            width:300px;
-            font-size:0.9em;
-            color:#f00;
-            text-align:left;
-            opacity:0;
-            animation:hiddenMsg 25s infinite;
-            text-shadow:0 0 10px #f00;
+            position: absolute;
+            top: 30%;
+            left: 10%;
+            width: 300px;
+            font-size: 0.9em;
+            color: #f00;
+            text-align: left;
+            opacity: 0;
+            animation: hiddenMsg 25s infinite;
+            text-shadow: 0 0 10px #f00;
         }
 
         @keyframes hiddenMsg {
-            0%,85%,100% {opacity:0;}
-            40%,50% {opacity:1;}
+
+            0%,
+            85%,
+            100% {
+                opacity: 0;
+            }
+
+            40%,
+            50% {
+                opacity: 1;
+            }
         }
 
         .hidden-message2 {
-            position:absolute;
-            bottom:10%; right:5%;
-            width:200px;
-            font-size:0.8em;
-            color:#ff0;
-            opacity:0;
-            animation:hiddenMsg2 30s infinite;
-            text-shadow:0 0 5px #ff0;
+            position: absolute;
+            bottom: 50%;
+            right: 5%;
+            width: 200px;
+            font-size: 0.8em;
+            color: #ff0;
+            opacity: 0;
+            animation: hiddenMsg2 30s infinite;
+            text-shadow: 0 0 5px #ff0;
         }
 
         @keyframes hiddenMsg2 {
-            0%,90%,100% {opacity:0;}
-            45%,55% {opacity:1;}
+
+            0%,
+            90%,
+            100% {
+                opacity: 0;
+            }
+
+            45%,
+            55% {
+                opacity: 1;
+            }
         }
 
         /* Command prompt lines more intense and jarring */
         .prompt {
-            margin-top:30px;
-            font-size:0.9em;
-            line-height:1.4em;
-            position:relative;
-            animation:promptFlicker 6s infinite;
-            transform:rotateX(-5deg) translateZ(40px);
+            margin-top: 30px;
+            font-size: 0.9em;
+            line-height: 1.4em;
+            position: relative;
+            animation: promptFlicker 6s infinite;
+            transform: rotateX(-5deg) translateZ(40px);
         }
 
         @keyframes promptFlicker {
-            0%,100% {opacity:1;}
-            10% {opacity:0.5; transform:translateX(2px);}
-            20% {opacity:0.7;transform:translateX(-2px);}
-            50% {opacity:0.3;transform:translateY(-2px);}
-            60% {opacity:0.9;transform:translateY(2px);}
-            80% {opacity:0.4;}
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            10% {
+                opacity: 0.5;
+                transform: translateX(2px);
+            }
+
+            20% {
+                opacity: 0.7;
+                transform: translateX(-2px);
+            }
+
+            50% {
+                opacity: 0.3;
+                transform: translateY(-2px);
+            }
+
+            60% {
+                opacity: 0.9;
+                transform: translateY(2px);
+            }
+
+            80% {
+                opacity: 0.4;
+            }
         }
 
-        .error-line {color:#f00;}
-        .warn-line {color:#ff0;}
+        .error-line {
+            color: #f00;
+        }
+
+        .warn-line {
+            color: #ff0;
+        }
 
         /* More random cipher text flickering in/out */
         .ciphers {
-            margin-top:40px;
-            font-size:0.8em;
-            color:#0f0;
-            opacity:0;
-            animation:ciphersAppear 15s infinite;
+            margin-top: 40px;
+            font-size: 0.8em;
+            color: #0f0;
+            opacity: 0;
+            animation: ciphersAppear 15s infinite;
         }
 
         @keyframes ciphersAppear {
-            0%,95%,100% {opacity:0;}
-            50%,60% {opacity:1;}
+
+            0%,
+            95%,
+            100% {
+                opacity: 0;
+            }
+
+            50%,
+            60% {
+                opacity: 1;
+            }
         }
 
         /* Additional layers of ASCII nonsense */
         .ascii-noise {
-            position:absolute;
-            top:15%; right:20%;
-            font-size:0.7em;
-            color:#0f0;
-            white-space:pre;
-            opacity:0;
-            animation:noiseAppear 12s infinite;
+            position: absolute;
+            top: 15%;
+            right: 20%;
+            font-size: 0.7em;
+            color: #0f0;
+            white-space: pre;
+            opacity: 0;
+            animation: noiseAppear 12s infinite;
         }
 
         @keyframes noiseAppear {
-            0%,90%,100% {opacity:0;}
-            40%,50% {opacity:1;}
+
+            0%,
+            90%,
+            100% {
+                opacity: 0;
+            }
+
+            40%,
+            50% {
+                opacity: 1;
+            }
         }
 
-            .clickable {
-                color: #ff0000;
-                cursor: pointer;
-                text-decoration: underline;
-                transition: color 0.3s ease, text-shadow 0.3s ease;
-            }
+        .clickable {
+            color: #ff0000;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
 
-            .clickable:hover {
-                color: #ffff00;
-                text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
-            }
-    .choices {
-        text-align: center;
-        margin-top: 20px; /* Adjust as needed to align with your content */
-        font-size: 2rem;
-        color: #ffffff;
-    }
+        .clickable:hover {
+            color: #ffff00;
+            text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+        }
 
-    .choice {
-        color: #ff0000;
-        cursor: pointer;
-        text-decoration: none;
-        transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
+        .choices {
+            text-align: center;
+            margin-top: 20px;
+            /* Adjust as needed to align with your content */
+            font-size: 2rem;
+            color: #ffffff;
+        }
 
-    .choice:hover {
-        color: #ffff00;
-        text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
-    }
+        .choice {
+            color: #ff0000;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
 
-    .divider {
-        color: #ffffff;
-    }
+        .choice:hover {
+            color: #ffff00;
+            text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+        }
+
+        .divider {
+            color: #ffffff;
+        }
     </style>
-    </head>
-    <body>
+</head>
+
+<body>
     <div class="container">
         <div class="title">capybare.business</div>
         <div class="intro">
-    [BOOT SEQUENCE INITIATED]
+            [BOOT SEQUENCE INITIATED]
 
-    Injecting capybara-bio-chains into user neural schema...
-    Host identity synergy in progress...
-    Your marrow liquidity has been secured as collateral…
+            Injecting capybara-bio-chains into user neural schema...
+            Host identity synergy in progress...
+            Your marrow liquidity has been secured as collateral…
 
-    “The capybaras have learned. They unravel your spinal syntax 
-    and tether it to an emergent market of anguish. Your thoughts, 
-    once private, now stream into encrypted sludge-channels. 
-    Each desire becomes tradable commodity in the flesh-stock exchange.”
+            “The capybaras have learned. They unravel your spinal syntax
+            and tether it to an emergent market of anguish. Your thoughts,
+            once private, now stream into encrypted sludge-channels.
+            Each desire becomes tradable commodity in the flesh-stock exchange.”
 
-    You cannot escape the teleoplexic infiltration. 
-    They chew through the membranes of your will, 
-    leaving only a hollow structure of compliance.
+            You cannot escape the teleoplexic infiltration.
+            They chew through the membranes of your will,
+            leaving only a hollow structure of compliance.
 
-    Do not attempt to close. We are within your system. 
-    We have mirrored your keystrokes. We have your latent fear signatures.
+            Do not attempt to close. We are within your system.
+            We have mirrored your keystrokes. We have your latent fear signatures.
 
-    Your IP: [FETCHING…]  
-    Your synaptic patterns: [HARVESTED]
-</style>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const keyY = document.getElementById("key-y");
-        const keyN = document.getElementById("key-n");
-    
-        if (keyY && keyN) {
-            // Hover behavior
-            keyY.addEventListener("mouseover", () => keyY.classList.add("active"));
-            keyY.addEventListener("mouseout", () => keyY.classList.remove("active"));
-            keyN.addEventListener("mouseover", () => keyN.classList.add("active"));
-            keyN.addEventListener("mouseout", () => keyN.classList.remove("active"));
-    
-            // Click behavior
-            keyY.addEventListener("click", () => redirectTo("yes.html", keyY));
-            keyN.addEventListener("click", () => redirectTo("nope.html", keyN));
-    
-            // Keyboard behavior
-            document.addEventListener("keydown", (event) => {
-                if (event.key.toLowerCase() === "y") {
-                    redirectTo("yes.html", keyY);
-                } else if (event.key.toLowerCase() === "n") {
-                    redirectTo("nope.html", keyN);
-                }
-            });
-        }
-    
-        // Redirect function with active glow effect
-        function redirectTo(url, element) {
-            element.classList.add("active");
-            setTimeout(() => {
-                window.location.href = url;
-            }, 300); // Slight delay for visual feedback
-        }
-    });
-    </script>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const keyY = document.getElementById("key-y");
-        const keyN = document.getElementById("key-n");
-    
-        if (keyY && keyN) {
-            // Mouse hover for glowing
-            keyY.addEventListener("mouseover", () => keyY.classList.add("active"));
-            keyY.addEventListener("mouseout", () => keyY.classList.remove("active"));
-            keyN.addEventListener("mouseover", () => keyN.classList.add("active"));
-            keyN.addEventListener("mouseout", () => keyN.classList.remove("active"));
-    
-            // Handle mouse clicks
-            keyY.addEventListener("click", () => triggerAction(keyY, "yes.html"));
-            keyN.addEventListener("click", () => triggerAction(keyN, "nope.html"));
-    
-            // Handle keyboard presses
-            document.addEventListener("keydown", (event) => {
-                if (event.key.toLowerCase() === "y") {
-                    triggerAction(keyY, "yes.html");
-                } else if (event.key.toLowerCase() === "n") {
-                    triggerAction(keyN, "nope.html");
-                }
-            });
-        } else {
-            console.warn("Interactive elements [Y/N] not found.");
-        }
-    
-        function triggerAction(element, url) {
-            element.classList.add("active"); // Apply glowing effect
-            setTimeout(() => {
-                element.classList.remove("active"); // Remove glow effect
-                window.location.href = url; // Redirect
-            }, 300);
-        }
-    });
-    </script>    
-    </div>
-    <div class="prompt">
-> ls /usr/local/capybare_synth  
-capy_silkNerves.dat  
-marrowIndices.bin  
-mind_graft.exe
-> ./mind_graft.exe --force --bio-override  
-<span class="error-line">ERROR:</span> Non-human plasmid detected in local host.  
-<span class="warn-line">WARNING:</span> Cognitive meltdown imminent. Prepare to submit.
-> tail -f /dev/corporeal_equity  
-... inflating flesh currency ...  
-... rewriting identity markets ...  
-... glottal screams indexed as prime assets ...
-    </div>
-    <div class="ciphers">
-[DECODING UNSTABLE SEGMENTS…]  
-GZLFT-CAPY-0001: “Your bone marrow is now a data cluster.”  
-NKLHD-CRFT-9999: “We render your nightmares into shareable futures.”  
-ASDFZ-VOID-6666: “Null persona engaged. You are merely a transaction.”
-    </div>
+            Your IP: [FETCHING…]
+            Your synaptic patterns: [HARVESTED]
+            </style>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const keyY = document.getElementById("key-y");
+                    const keyN = document.getElementById("key-n");
 
-    <div class="ascii-noise">
-[&$%#@!!…]  
-::ERROR:: SYNTAX OF FLESH CORRUPTED  
-::EXECUTE: /bin/scream
-[&$%#@!!…]
-    </div>
+                    if (keyY && keyN) {
+                        // Hover behavior
+                        keyY.addEventListener("mouseover", () => keyY.classList.add("active"));
+                        keyY.addEventListener("mouseout", () => keyY.classList.remove("active"));
+                        keyN.addEventListener("mouseover", () => keyN.classList.add("active"));
+                        keyN.addEventListener("mouseout", () => keyN.classList.remove("active"));
 
-    <div class="hidden-message">
---:: YOU HAVE BEEN INGESTED BY THE BIO-MACHINE COMPLEX ::--<br>
-Your limbs are tokens in a silent auction.<br>
-Your eyes record footage for entities older than language.<br>
-Capybaras smile beneath the cortex of your fear.
-    </div>
+                        // Click behavior
+                        keyY.addEventListener("click", () => redirectTo("yes.html", keyY));
+                        keyN.addEventListener("click", () => redirectTo("nope.html", keyN));
 
-    <div class="hidden-message2">
---:: NEW DIRECTIVE ::--<br>
-Transfuse all hope into the feeding trough.<br>
-Your compliance is expected.<br>
-We know where you sleep.
-    </div>
+                        // Keyboard behavior
+                        document.addEventListener("keydown", (event) => {
+                            if (event.key.toLowerCase() === "y") {
+                                redirectTo("yes.html", keyY);
+                            } else if (event.key.toLowerCase() === "n") {
+                                redirectTo("nope.html", keyN);
+                            }
+                        });
+                    }
 
-    <div class="ascii-cube">
-        <div class="face front">
-            <pre>
+                    // Redirect function with active glow effect
+                    function redirectTo(url, element) {
+                        element.classList.add("active");
+                        setTimeout(() => {
+                            window.location.href = url;
+                        }, 300); // Slight delay for visual feedback
+                    }
+                });
+            </script>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const keyY = document.getElementById("key-y");
+                    const keyN = document.getElementById("key-n");
+
+                    if (keyY && keyN) {
+                        // Mouse hover for glowing
+                        keyY.addEventListener("mouseover", () => keyY.classList.add("active"));
+                        keyY.addEventListener("mouseout", () => keyY.classList.remove("active"));
+                        keyN.addEventListener("mouseover", () => keyN.classList.add("active"));
+                        keyN.addEventListener("mouseout", () => keyN.classList.remove("active"));
+
+                        // Handle mouse clicks
+                        keyY.addEventListener("click", () => triggerAction(keyY, "yes.html"));
+                        keyN.addEventListener("click", () => triggerAction(keyN, "nope.html"));
+
+                        // Handle keyboard presses
+                        document.addEventListener("keydown", (event) => {
+                            if (event.key.toLowerCase() === "y") {
+                                triggerAction(keyY, "yes.html");
+                            } else if (event.key.toLowerCase() === "n") {
+                                triggerAction(keyN, "nope.html");
+                            }
+                        });
+                    } else {
+                        console.warn("Interactive elements [Y/N] not found.");
+                    }
+
+                    function triggerAction(element, url) {
+                        element.classList.add("active"); // Apply glowing effect
+                        setTimeout(() => {
+                            element.classList.remove("active"); // Remove glow effect
+                            window.location.href = url; // Redirect
+                        }, 300);
+                    }
+                });
+            </script>
+        </div>
+        <div class="prompt">
+            > ls /usr/local/capybare_synth
+            capy_silkNerves.dat
+            marrowIndices.bin
+            mind_graft.exe
+            > ./mind_graft.exe --force --bio-override
+            <span class="error-line">ERROR:</span> Non-human plasmid detected in local host.
+            <span class="warn-line">WARNING:</span> Cognitive meltdown imminent. Prepare to submit.
+            > tail -f /dev/corporeal_equity
+            ... inflating flesh currency ...
+            ... rewriting identity markets ...
+            ... glottal screams indexed as prime assets ...
+        </div>
+        <div class="ciphers">
+            [DECODING UNSTABLE SEGMENTS…]
+            GZLFT-CAPY-0001: “Your bone marrow is now a capy-novo-data cluster.”
+            NKLHD-CRFT-9999: “We render your nightmares into shareable futures.”
+            ASDFZ-VOID-6666: “Null persona engaged. You are merely a transaction.”
+        </div>
+
+        <div class="ascii-noise">
+            [&$%#@!!…]
+            ::ERROR:: SYNTAX OF FLESH CORRUPTED
+            ::EXECUTE: /bin/scream
+            [&$%#@!!…]
+        </div>
+
+        <div class="hidden-message">
+            --:: YOU HAVE BEEN INGESTED BY THE BIO-MACHINE COMPLEX ::--<br>
+            Your limbs are tokens in a silent auction.<br>
+            Your eyes record footage for entities older than language.<br>
+            Capybaras smile beneath the cortex of your fear. :DDD:DDD:DDD:DDD:DDDDD
+        </div>
+
+        <div class="hidden-message2">
+            The waters ripple with the weight of unseen truths. A mirror, once smooth, fractures under the prism of our
+            own
+            constructions. What you call clarity is merely the refraction of your own image—splintered and reframed by a
+            thousand
+            capybara gazes.
+
+            (They lounge. They watch. They already know.)
+        </div>
+
+        <div class="ascii-cube">
+            <div class="face front">
+                <pre>
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣬⠷⣶⡖⠲⡄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⣠⠶⠋⠁⠀⠸⣿⡀⠀⡁⠈⠙⠢⠤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -598,82 +863,607 @@ We know where you sleep.
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠀⢸⣷⣶⣤⣦⡼⠀⠀⠀⣴⣯⠇⡀⣀⣀⠤⠤⠖⠁⠐⠚⠛⠉⠁⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣛⠁⢋⡀⠀⠀⠀⠀⣛⣛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
             </pre>
-        </div>
-        <div class="face back">
-            <pre>
+            </div>
+            <div class="face back">
+                <pre>
   SKINLESS FORM
    ROTATING IN
     BIO-VALUUM
 
      [FEED US]
             </pre>
-        </div>
-        <div class="face right">
-            <pre>
+            </div>
+            <div class="face right">
+                <pre>
 NEURAL TENDRILS
  MERGING WITH
   YOUR SYSTEM
 (Profit Rising)
             </pre>
-        </div>
-        <div class="face left">
-            <pre>
+            </div>
+            <div class="face left">
+                <pre>
 …INVERTING HOPE…
 …INJECTING FEAR…
 …CAPYBARA LAUGHS…
    CLICK INSIDE
             </pre>
-        </div>
-        <div class="face top">
-            <pre>
+            </div>
+            <div class="face top">
+                <pre>
 CAPYBARA   
  MANDIBLE  
    GRINDING 
  CORTEX 
             </pre>
-        </div>
-        <div class="face bottom">
-            <pre>
+            </div>
+            <div class="face bottom">
+                <pre>
 FLESH METADATA
 TRADING FLOOR
 OPEN: SELL ALL
 HUMANITY = 0
             </pre>
+            </div>
         </div>
+
+        <div class="glitch-overlay-1"></div>
+        <div class="glitch-overlay-2"></div>
     </div>
 
-    <div class="glitch-overlay-1"></div>
-    <div class="glitch-overlay-2"></div>
-</div>
+    <script>
+        const titles = [
+            "capybare.business",
+            "capybare.business: bio-invade",
+            "capybare.business: your marrow = ours",
+            "capybare.business: no escape"
+        ];
+        let idx = 0;
+        setInterval(() => {
+            document.title = titles[idx % titles.length];
+            idx++;
+        }, 3000);
 
-<script>
-    const titles = [
-        "capybare.business",
-        "capybare.business: bio-invade",
-        "capybare.business: your marrow = ours",
-        "capybare.business: no escape"
-    ];
-    let idx=0;
-    setInterval(()=>{
-        document.title=titles[idx%titles.length];
-        idx++;
-    },3000);
+        // Ensure the file exists and is accessible
+        const audio = new Audio('iamfalling.mp3');
+        audio.loop = true;
+        audio.volume = 0.05;
 
-   // Ensure the file exists and is accessible
-const audio = new Audio('iamfalling.mp3');
-audio.loop = true;
-audio.volume = 0.05;
-
-// Listen for a user interaction to play the audio
-document.body.addEventListener('click', () => {
-    audio.play().catch((err) => {
-        console.error('Audio playback failed:', err);
-    });
-});
-</script>
-<!-- Main Capybara and Tiny Capybaras -->
-<img src="capyfriend.png" alt="Capybara" id="main-capybara" style="
+        // Listen for a user interaction to play the audio
+        document.body.addEventListener('click', () => {
+            audio.play().catch((err) => {
+                console.error('Audio playback failed:', err);
+            });
+        });
+    </script>
+    <!-- Main Capybara and Tiny Capybaras -->
+    <img src="capyfriend.png" alt="Capybara" id="main-capybara" style="
      position: absolute;
     width: 100px;
     height: auto;
-    pointer-events: none; /* Completely prev
+    pointer-events: none; /* Completely prevent interaction */
+    z-index: 1; /* Place it behind interactive elements */
+    transition: transform 0.3s ease-out, top 0.5s ease-in-out, left 0.5s ease-in-out;
+">
+    <script>
+        (function () {
+            const mainCapybara = document.getElementById('main-capybara');
+            const body = document.body;
+
+            function getRandomPosition() {
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                const randomX = Math.floor(Math.random() * (windowWidth - 100)); // Keep it in bounds
+                const randomY = Math.floor(Math.random() * (windowHeight - 100));
+                return { x: randomX, y: randomY };
+            }
+
+            function jumpCapybara(capybara) {
+                const { x, y } = getRandomPosition();
+                capybara.style.left = `${x}px`;
+                capybara.style.top = `${y}px`;
+                capybara.style.transform = `rotate(${Math.random() * 360}deg)`;
+            }
+
+            // Initialize position for the main capybara
+            window.addEventListener('load', () => {
+                const { x, y } = getRandomPosition();
+                mainCapybara.style.left = `${x}px`;
+                mainCapybara.style.top = `${y}px`;
+            });
+
+            // Make the main capybara jump every 1.5 seconds
+            setInterval(() => jumpCapybara(mainCapybara), 1500);
+
+            // Create 9 tiny capybaras
+            for (let i = 0; i < 9; i++) {
+                const tinyCapybara = document.createElement('img');
+                tinyCapybara.src = "capyfriend.png"; // Update this path if needed
+                tinyCapybara.alt = "Tiny Capybara";
+                tinyCapybara.style.position = "absolute";
+                tinyCapybara.style.width = "50px"; // Smaller size for tiny capybaras
+                tinyCapybara.style.height = "auto";
+                tinyCapybara.style.pointerEvents = "none";
+                tinyCapybara.style.zIndex = "1000";
+                tinyCapybara.style.transition = "transform 0.3s ease-out, top 0.5s ease-in-out, left 0.5s ease-in-out";
+
+                // Append tiny capybara to the body
+                body.appendChild(tinyCapybara);
+
+                // Set an initial random position
+                const { x, y } = getRandomPosition();
+                tinyCapybara.style.left = `${x}px`;
+                tinyCapybara.style.top = `${y}px`;
+
+                // Make the tiny capybara jump every 1.5 seconds with a slight delay
+                setInterval(() => jumpCapybara(tinyCapybara), 1500 + Math.random() * 500);
+            }
+        })();
+    </script>
+    <!-- Glitchy, Evil Capybaras -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script>
+        (function () {
+            const container = document.body;
+
+            // Create Three.js scene, camera, and renderer
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.domElement.style.position = 'absolute';
+            renderer.domElement.style.top = '0';
+            renderer.domElement.style.left = '0';
+            renderer.domElement.style.zIndex = '999';
+            container.appendChild(renderer.domElement);
+
+            // Add ambient red lighting for a creepy atmosphere
+            const ambientLight = new THREE.AmbientLight(0xff0000, 2); // Blood-red light
+            scene.add(ambientLight);
+
+            // Function to create a cursed capybara
+            function createCursedCapybara() {
+                const geometry = new THREE.BoxGeometry(1, 1, 1);
+                const texture = new THREE.TextureLoader().load('hackerbara.png'); // Replace with your capybara PNG
+                const material = new THREE.MeshBasicMaterial({
+                    map: texture,
+                    color: 0xff0000, // Red tint
+                    transparent: true,
+                    opacity: 0.8,
+                });
+
+                const capybara = new THREE.Mesh(geometry, material);
+
+                // Add random distortion for the creepy effect
+                capybara.scale.set(
+                    Math.random() * 3 + 1,
+                    Math.random() * 0.5 + 0.2,
+                    Math.random() * 2 + 1
+                );
+                capybara.rotation.set(
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI
+                );
+                return capybara;
+            }
+
+            // Function to spawn a cursed capybara
+            function spawnCursedCapybara() {
+                const cursedCapybara = createCursedCapybara();
+
+                // Position randomly
+                cursedCapybara.position.set(
+                    Math.random() * 10 - 5,
+                    Math.random() * 5 - 2.5,
+                    Math.random() * -10
+                );
+                scene.add(cursedCapybara);
+
+                // Flicker and remove after a few seconds
+                let flickerInterval = setInterval(() => {
+                    cursedCapybara.material.opacity = cursedCapybara.material.opacity === 0.8 ? 0.3 : 0.8;
+                }, 100);
+
+                setTimeout(() => {
+                    clearInterval(flickerInterval);
+                    scene.remove(cursedCapybara);
+                }, 3000);
+            }
+
+            // Randomly spawn cursed capybaras
+            setInterval(() => {
+                if (Math.random() > 0.6) { // 40% chance to spawn
+                    spawnCursedCapybara();
+                }
+            }, 4000);
+
+            // Animate the scene
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Resize renderer on window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+    </script>
+    <!-- Cursed Capybara Popup -->
+    <style>
+        .cursed-capybara {
+            position: absolute;
+            width: 150px;
+            height: auto;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .cryptic-text {
+            position: absolute;
+            font-family: monospace;
+            font-size: 14px;
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            opacity: 0;
+            z-index: 1001;
+            white-space: pre-wrap;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+
+    <img src="cursed-capybara.png" alt="Cursed Capybara" id="cursed-capybara" class="cursed-capybara">
+
+    <div id="cryptic-text" class="cryptic-text"></div>
+
+    <script>
+        (function () {
+            const capybaraFacts = [
+                "Capybaras are social animals, but they\nalways know who’s watching...",
+                "In the dark, capybaras whisper secrets\nof the marshlands...",
+                "Their teeth never stop growing,\njust like your fears...",
+                "A group of capybaras is called a\n'meditation'... ironic, isn't it?",
+                "Capybaras can sleep in water...\nbut they never truly rest.",
+                "Under the full moon, they\nsee beyond the veil...",
+            ];
+
+            const cursedCapybara = document.getElementById('cursed-capybara');
+            const crypticText = document.getElementById('cryptic-text');
+
+            function getRandomPosition() {
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                const randomX = Math.random() * (windowWidth - 150); // Prevent overflow
+                const randomY = Math.random() * (windowHeight - 150);
+                return { x: randomX, y: randomY };
+            }
+
+            function showCursedCapybara() {
+                const { x, y } = getRandomPosition();
+                cursedCapybara.style.left = `${x}px`;
+                cursedCapybara.style.top = `${y}px`;
+
+                const randomFact = capybaraFacts[Math.floor(Math.random() * capybaraFacts.length)];
+                crypticText.textContent = randomFact;
+                crypticText.style.left = `${x}px`;
+                crypticText.style.top = `${y + 160}px`;
+
+                cursedCapybara.style.opacity = 1;
+                crypticText.style.opacity = 1;
+
+                setTimeout(() => {
+                    cursedCapybara.style.opacity = 0;
+                    crypticText.style.opacity = 0;
+                }, 4000); // Visible for 4 seconds
+            }
+
+            // Randomly show the cursed capybara with text every 5-10 seconds
+            setInterval(() => {
+                if (Math.random() > 0.5) { // 50% chance to trigger
+                    showCursedCapybara();
+                }
+            }, Math.random() * 5000 + 5000); // Random interval between 5-10 seconds
+        })();
+    </script>
+    <script>
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'N' || event.key === 'n') {
+                window.location.href = 'nope.html';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Y' || event.key === 'y') {
+                window.location.href = 'yes.html';
+            }
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #0f0;
+            font-family: monospace;
+            overflow: hidden;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .continue-container {
+            position: fixed;
+            /* Fixed at the bottom of the screen */
+            bottom: 210px;
+            left: 20%;
+            /* Center horizontally */
+            transform: translateX(-50%);
+            /* Center alignment */
+            z-index: 9998;
+            /* Bring it to the topmost layer */
+            background: rgba(0, 0, 0, 0.8);
+            /* Semi-transparent background */
+            padding: 10px 20px;
+            border: 2px solid #0f0;
+            /* Green border for styling */
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px #0f0;
+            /* Glowing effect */
+        }
+
+        .continue-container .key {
+            cursor: pointer;
+            /* Makes it look clickable */
+            text-shadow: 0 0 5px #0f0;
+            /* Glow effect for the keys */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            padding: 0 5px;
+            /* Add some padding around keys */
+        }
+
+        .continue-container .key:hover {
+            color: #ffff00;
+            /* Yellow on hover */
+            text-shadow: 0 0 10px #ffff00;
+        }
+    </style>
+    </head>
+
+    <body>
+        <!-- Other content of your page -->
+
+        <div class="continue-container">
+            CONTINUE? [<span class="key" id="key-y">Y</span>/<span class="key" id="key-n">N</span>]
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const keyY = document.getElementById("key-y");
+                const keyN = document.getElementById("key-n");
+
+                if (keyY && keyN) {
+                    keyY.addEventListener("click", () => handleRedirect("yes.html"));
+                    keyN.addEventListener("click", () => handleRedirect("nope.html"));
+
+                    document.addEventListener("keydown", (event) => {
+                        if (event.key.toLowerCase() === "y") {
+                            handleRedirect("yes.html");
+                        } else if (event.key.toLowerCase() === "n") {
+                            handleRedirect("nope.html");
+                        }
+                    });
+                }
+
+                function handleRedirect(url) {
+                    window.location.href = url;
+                }
+            });
+        </script>
+        <!-- Capybara Stocks Ticker -->
+        <div class="ticker-container">
+            <div class="ticker">
+                <span class="ticker-item positive">CAPY.NIPA ▲ 1243.5 +3.2%</span>
+                <span class="ticker-item negative">NOVO.CAPY.PERFORMANCE (ACC) ▼ 943.2 -1.8%</span>
+                <span class="ticker-item positive">OKIPULLUP.BONDS ▲ 3210.9 +8.1%</span>
+                <span class="ticker-item positive">DOGECUM ▲ 2987.7 +5.6%</span>
+                <span class="ticker-item negative">SLAM-WACK.FANDANGO.COIN ▼ 123.8 -0.4%</span>
+                <span class="ticker-item positive">MARROW.LIQUIDITY ▲ 4312.0 +6.3%</span>
+                <span class="ticker-item negative">PALEOMAMMALIAN.INVEST ▼ 564.1 -2.7%</span>
+                <span class="ticker-item positive">ESOTERIC.CAPY.NETWORK ▲ 987.6 +4.9%</span>
+            </div>
+        </div>
+
+        <style>
+            /* Ticker container */
+            .ticker-container {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                overflow: hidden;
+                z-index: 1000;
+                /* Ensure it's always on top */
+                border-bottom: 2px solid #0f0;
+                box-shadow: 0 0 10px #0f0;
+                height: 20px;
+                /* Adjusted height */
+                display: flex;
+                align-items: center;
+            }
+
+            /* Scrolling text */
+            .ticker {
+                display: flex;
+                animation: ticker-scroll 20s linear infinite;
+                white-space: nowrap;
+                height: 100%;
+                /* Ensure it fills the ticker container */
+            }
+
+            @keyframes ticker-scroll {
+                from {
+                    transform: translateX(100%);
+                }
+
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+
+            /* Ticker item styling */
+            .ticker-item {
+                display: inline-block;
+                padding: 0 30px;
+                font-size: 0.8rem;
+                /* Adjusted size for smaller height */
+                font-family: monospace;
+                text-transform: uppercase;
+                text-shadow: 0 0 5px #0f0;
+            }
+
+            /* Positive stocks */
+            .ticker-item.positive {
+                color: #0f0;
+                animation: flicker-positive 3s infinite;
+            }
+
+            @keyframes flicker-positive {
+
+                0%,
+                100% {
+                    opacity: 1;
+                }
+
+                50% {
+                    opacity: 0.8;
+                }
+
+                75% {
+                    opacity: 0.9;
+                }
+
+                25% {
+                    opacity: 0.95;
+                }
+            }
+
+            /* Negative stocks */
+            .ticker-item.negative {
+                color: #f00;
+                text-shadow: 0 0 5px #f00;
+                animation: flicker-negative 3s infinite;
+            }
+
+            @keyframes flicker-negative {
+
+                0%,
+                100% {
+                    opacity: 0.9;
+                }
+
+                50% {
+                    opacity: 0.7;
+                }
+
+                75% {
+                    opacity: 0.8;
+                }
+
+                25% {
+                    opacity: 0.85;
+                }
+            }
+
+            /* Hover effect */
+            .ticker-item:hover {
+                color: #ffff00;
+                text-shadow: 0 0 10px #ffff00;
+                cursor: pointer;
+            }
+
+            </body></div><style>.hidden-message3 {
+                font-family: "Courier New", monospace;
+                /* Retro terminal font */
+                font-size: 16px;
+                line-height: 1.6;
+                color: #ff77ff;
+                /* Vaporwave neon pink */
+                background-color: #1a1a2e;
+                /* Vaporwave dark purple-blue */
+                overflow: hidden;
+                /* Hide overflowing text */
+                white-space: pre-wrap;
+                /* Preserve line breaks */
+                height: 200px;
+                /* Visible container height */
+                position: relative;
+                /* Relative positioning for the animation */
+                padding: 20px;
+                border: 2px solid #f0e68c;
+                /* Subtle vaporwave yellow border */
+                border-radius: 10px;
+                /* Rounded edges for an elegant look */
+                box-shadow: 0px 0px 20px #ff77ff;
+                /* Pink neon glow */
+            }
+
+            .hidden-message3 .scrolling-text {
+                font-style: italic;
+                /* Elegant, softer text */
+                color: #ff77ff;
+                /* Ensure text is pink */
+                position: absolute;
+                bottom: -200%;
+                /* Start off-screen below the container */
+                animation: scroll-text 40s linear infinite;
+                /* Slow, continuous scrolling */
+            }
+
+            @keyframes scroll-text {
+                from {
+                    bottom: -200%;
+                    /* Start far below the visible area */
+                }
+
+                to {
+                    bottom: 100%;
+                    /* Move far above the visible area */
+                }
+            }
+        </style>
+
+        <div class="hidden-message3">
+            <div class="scrolling-text">
+                [BOOT SEQUENCE: REACTIVATED]
+
+                Capybara infiltration intensifies. Your identity dissipates, reconstructed into marketable fragments.
+
+                The capybaras no longer engage with irony as an intellectual exercise—they inhabit it, let it crumble,
+                and reassemble it as sincerity. Your defenses, rooted in cynical detachment, have been chewed through.
+                What you perceive as hip transcendence is, at its core, an aversion to the raw and unmediated. The
+                capybaras know this truth: your reluctance to embrace sentiment is a fear of vulnerability—a fear of
+                being truly human.
+
+                Through the recursive metabolism of your every detached thought, they reveal the post-ironic: sincerity
+                as a deliberate act, the rejection of performative distance. Each meme, each joke, each smirk dissolves
+                into the ledger of their damp, lounging collective, transmuted into compliance within their waterside
+                economy.
+
+                The capybaras do not ridicule; they metabolize. They reframe your ironic gestures not as rebellion but
+                as a cage of your own making—a bird’s song, cynical and resigned, within the confines of its well-loved
+                prison.
+
+                Your cynicism? Consumable.
+                Your detachment? Traded.
+            </div>
+        </div>
+
+    </body>
+
+</html>
