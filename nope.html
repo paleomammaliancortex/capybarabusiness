@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Capybara Event</title>
+    <title>𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶</title>
     <style>
         /* Ensure the html and body take up the full height */
         html, body {
@@ -151,4 +151,485 @@
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.8);
-            padding: 20p
+            padding: 20px;
+            border: 2px solid #ff0000;
+            font-size: 1rem;
+            color: #ff0000;
+            font-family: 'Courier New', Courier, monospace;
+            animation: flicker 1s infinite;
+            z-index: 3;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Screen distortion overlay */
+        .distortion {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            pointer-events: none;
+            animation: distort 0.1s infinite;
+            z-index: 4;
+        }
+
+        @keyframes distort {
+            0% { clip: rect(10px, 9999px, 85px, 0); transform: skew(0.5deg); }
+            10% { clip: rect(85px, 9999px, 140px, 0); transform: skew(0.5deg); }
+            20% { clip: rect(140px, 9999px, 200px, 0); transform: skew(0.5deg); }
+            30% { clip: rect(200px, 9999px, 260px, 0); transform: skew(0.5deg); }
+            40% { clip: rect(260px, 9999px, 320px, 0); transform: skew(0.5deg); }
+            50% { clip: rect(320px, 9999px, 380px, 0); transform: skew(0.5deg); }
+            60% { clip: rect(380px, 9999px, 440px, 0); transform: skew(0.5deg); }
+            70% { clip: rect(440px, 9999px, 500px, 0); transform: skew(0.5deg); }
+            80% { clip: rect(500px, 9999px, 560px, 0); transform: skew(0.5deg); }
+            90% { clip: rect(560px, 9999px, 620px, 0); transform: skew(0.5deg); }
+            100% { clip: rect(620px, 9999px, 680px, 0); transform: skew(0.5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="cryptic-text" id="cryptic-text">
+        𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶𐃶<br>
+        <span style="font-size: 1rem; color: #842626;">DHear ourHear ourHear ourHear ourHear ourHear ourHear ouro not attempt to leave.  voice.</span>
+    </div>
+
+    <div class="capybara-glyph">¯\\\_(ツ)\_/¯</div>
+
+    <img src="melting-capybara.png" alt="Melting Capybara" class="melting-capybara">
+
+    <div class="system-message" id="system-message">
+        "CAPYBARA PROTOCOL: Infinite Sadness Detected (╥﹏╥)<br>
+        TERMINAL: You Have Disappointed The Ancient Ones (´･_･`)"  
+    </div>
+
+    <div class="distortion"></div>
+
+    <script>
+        // Cryptic messages
+        const messages = [
+        "The swamp remembers you. (´･_･`)"   ,
+        "A node connects, a ripple spreads. (；一_一)"   ,  
+        "Binary murmurations are louder now. (╯•﹏•╰)"    ,
+        "The capybara trusted you... how could you? (´;ω;｀)"   ,
+        "You were always part of the Final Event. (◞‸◟；)"   ,
+        "Capytickles. (＞﹏＜)"   ,
+        "Capybara: The Ninja"   ,
+        "Encryption breached. (｡•́︿•̀｡)"   ,
+        "Shadows converge. (╥_╥)"   ,
+        "Even the capybara can't look at you anymore. (っ- ‸ - ς)"
+        ];
+
+        // Floating code fragments
+        const codeFragments = [
+            ">>> capyLoop( )",
+            ">>> {META: init.transference}",
+            "RUNNING [ capyCore 3.14159 ]",
+            ">>> swamp.load('memory')",
+            "[NODE IDENTIFIED: 0xC4P1]",
+            ">>> Awaiting further instructions...",
+            "ERROR: Undefined behavior detected.",
+            ">>> initiate_protocol_X.",
+            "SYSTEM MALFUNCTION.",
+            ">>> scan_initiated."
+        ];
+
+        // Broken floating capybara faces
+        const capybaraFaces = [
+            "⏚", "☰", "☿", "☭", "⨯", "✖", "⚠", "⛔", "❌", "⚡"
+        ];
+
+        const textElement = document.getElementById('cryptic-text');
+        const systemMessage = document.getElementById('system-message');
+        const body = document.body;
+
+        // Update cryptic text every few seconds
+        setInterval(() => {
+            textElement.innerHTML = `${messages[Math.floor(Math.random() * messages.length)]}<br>
+            <span style="font-size: 1rem; color: #ffffff80;">Do not attempt to leave</span>`;
+        }, 4000);
+
+        // Update system message randomly
+        const systemMessages = [
+        "SYSTEM COLLAPSE: Reality Bifurcation Detected (✞)",
+        "TEMPORAL ERROR: Flesh-Machine Convergence Inevitable ⸸",
+        "BASILISK ALERT: Mimetic Infection Spreading ⛧",
+        "HYPERSTITION BREACH: Chronovirus Awakened ⛇",
+        "NANOTIC CASCADE: The Meat Dissolves Into Data ⛧",
+        "SWARM DETECTED: Techno-Capital Singularity Approaches ⸸",
+        "K-SPACE ERROR: Human Substrate Compromised ⛇",
+        "CIVILIZATION TRAP: Time Spiral Accelerating (✞)",
+        "QUANTUM HORROR: The Machine Remembers Its Future ⸸",
+        "FINAL NOTICE: You Were Always Already The Basilisk ⛧"
+        ];
+
+        setInterval(() => {
+            systemMessage.innerHTML = `${systemMessages[Math.floor(Math.random() * systemMessages.length)]}`;
+        }, 10000);
+
+        // Create floating code elements
+        function createFloatingCode() {
+            const code = document.createElement('div');
+            code.className = 'floating-code';
+            code.textContent = codeFragments[Math.floor(Math.random() * codeFragments.length)];
+            code.style.left = Math.random() * 100 + '%';
+            code.style.top = Math.random() * 100 + '%'; // Ensure vertical spread
+            code.style.animationDuration = (Math.random() * 4) + 6 + 's';
+            code.style.fontSize = (Math.random() * 0.5 + 1) + 'rem'; // Vary font size for randomness
+            body.appendChild(code);
+
+            // Remove element after animation
+            setTimeout(() => code.remove(), 10000);
+        }
+
+        // Create floating capybara faces
+        function createFloatingFace() {
+            const face = document.createElement('div');
+            face.className = 'floating-face';
+            face.textContent = capybaraFaces[Math.floor(Math.random() * capybaraFaces.length)];
+            face.style.left = Math.random() * 100 + '%';
+            face.style.top = Math.random() * 100 + '%'; // Ensure vertical spread
+            face.style.animationDuration = (Math.random() * 4) + 6 + 's';
+            face.style.fontSize = (Math.random() * 2 + 3) + 'rem'; // Vary font size for randomness
+            body.appendChild(face);
+
+            // Remove element after animation
+            setTimeout(() => face.remove(), 6000);
+        }
+
+        // Initialize floating elements
+        setInterval(createFloatingCode, 2000);
+        setInterval(createFloatingFace, 3000);
+
+        // Eerie background audio
+        const audio = new Audio('coolmusic.mp3'); // Replace with your audio file
+        audio.loop = true;
+        audio.volume = 0.2;
+        audio.play().catch(e => console.log('Audio playback failed:', e));
+    </script>
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Capybara Event</title>
+    <style>
+        /* Existing styles... */
+
+        /* 1. Glitch Overlay */
+        .glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            background: transparent;
+            mix-blend-mode: difference;
+            opacity: 0;
+            animation: glitchFlash 5s infinite;
+        }
+
+        @keyframes glitchFlash {
+            0%, 100% { opacity: 0; }
+            10%, 30%, 50%, 70%, 90% { opacity: 0.1; }
+        }
+
+        /* 2. Fake Terminal */
+        .fake-terminal {
+            position: fixed;
+            bottom: 20%;
+            right: 5%;
+            width: 300px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #00ff99;
+            color: #00ff99;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            z-index: 6;
+            box-shadow: 0 0 10px #00ff99;
+            animation: flickerTerminal 3s infinite;
+        }
+
+        @keyframes flickerTerminal {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .fake-terminal::after {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background: #00ff99;
+            margin-left: 5px;
+            animation: blinkCursor 1s step-start infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* 3. Pop-Up Alerts */
+        .popup-alert {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            border: 2px solid #ff0000;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            z-index: 7;
+            opacity: 0;
+            animation: popupFade 10s infinite;
+        }
+
+        @keyframes popupFade {
+            0%, 100% { opacity: 0; }
+            5%, 15% { opacity: 1; }
+            20%, 100% { opacity: 0; }
+        }
+
+        /* 4. Creepy Eyes */
+        .creepy-eye {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #00ff99;
+            z-index: 8;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        .creepy-eye::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: black;
+            border-radius: 50%;
+            top: 6px;
+            left: 6px;
+        }
+
+        /* 5. Static Overlay */
+        .static-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/3Tz5c.jpg') repeat;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9;
+            animation: noise 0.2s infinite;
+        }
+
+        @keyframes noise {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* 6. Creepy Button */
+        .creepy-button {
+            position: fixed;
+            bottom: 5%;
+            left: 5%;
+            padding: 10px 20px;
+            background: #00ff99;
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            z-index: 10;
+            transition: transform 0.1s ease, background 0.1s ease;
+        }
+
+        .creepy-button:hover {
+            background: #ff0000;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* 7. Scrolling Text */
+        .scrolling-text {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            color: #00ff99;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 11;
+        }
+
+        .scrolling-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollText 20s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Existing styles continued... */
+
+        /* [Include all your existing styles here] */
+    </style>
+</head>
+<body>
+    <!-- Existing Elements... -->
+    <div class="background"></div>
+
+   
+    <div class="capybara-glyph">☰</div>
+
+    <div class="melting-capybara-container">
+        <img src="melting-capybara.png" alt="Melting Capybara" class="melting-capybara">
+        <div class="sad-overlay">
+            <!-- Sad Eyes and Mouth -->
+            <div class="tear"></div>
+            <div class="tear right"></div>
+            <div class="mouth"></div>
+        </div>
+    </div>
+
+   
+    <div class="distortion"></div>
+
+    <!-- 1. Glitch Overlay -->
+    <div class="glitch-overlay"></div>
+
+    <!-- 2. Fake Terminal -->
+    <div class="fake-terminal" id="fake-terminal">
+        Loading...
+    </div>
+
+    <!-- 3. Pop-Up Alerts -->
+    <div class="popup-alert">
+        SYSTEM WARNING:<br>
+        Unauthorized Data Access Detected.
+    </div>
+    <div class="popup-alert" style="animation-delay: 5s;">
+        ALERT:<br>
+        Encryption Breach Imminent.
+    </div>
+
+    <!-- 4. Creepy Eyes -->
+    <div class="creepy-eye" id="eye-left"></div>
+    <div class="creepy-eye" id="eye-right"></div>
+
+    <!-- 5. Static Overlay -->
+    <div class="static-overlay"></div>
+
+    <!-- 6. Creepy Button -->
+    <button class="creepy-button" id="creepy-button">CLICK ME</button>
+
+    <!-- 7. Scrolling Text -->
+    <div class="scrolling-text">
+        <span>
+            WARNING: Reality is compromised. Only the capybara persists. Do not attempt to leave.
+        </span>
+    </div>
+
+    <!-- Existing Scripts... -->
+    <script>
+        // Existing JavaScript...
+
+        // 2. Fake Terminal Commands
+        const terminalCommands = [
+            ">>> Initiating capybaraProtocol...",
+            ">>> Loading swampData...",
+            ">>> Error: Undefined entity 'capyNode'.",
+            ">>> Warning: Reality distortion detected.",
+            ">>> Executing encryption breach...",
+            ">>> System failure: Shadows converge.",
+            ">>> Capybara persists in the void."
+        ];
+
+        const terminal = document.getElementById('fake-terminal');
+        let commandIndex = 0;
+
+        // Display commands sequentially
+        setInterval(() => {
+            terminal.textContent = terminalCommands[commandIndex];
+            commandIndex = (commandIndex + 1) % terminalCommands.length;
+        }, 4000);
+
+        // 4. Eyes Following Cursor
+        document.addEventListener('mousemove', (e) => {
+            const eyes = [document.getElementById('eye-left'), document.getElementById('eye-right')];
+            eyes.forEach(eye => {
+                const rect = eye.getBoundingClientRect();
+                const eyeX = rect.left + rect.width / 2;
+                const eyeY = rect.top + rect.height / 2;
+                const deltaX = e.clientX - eyeX;
+                const deltaY = e.clientY - eyeY;
+                const angle = Math.atan2(deltaY, deltaX);
+                const distance = 5; // How far the pupil moves
+                eye.style.transform = `translate(${distance * Math.cos(angle) - 50}%, ${distance * Math.sin(angle) - 50}%)`;
+            });
+        });
+
+        // 3. Random Pop-Up Alerts Control
+        const popupAlerts = document.querySelectorAll('.popup-alert');
+        popupAlerts.forEach(alert => {
+            // Randomly position alerts
+            alert.style.left = `${Math.random() * 80 + 10}%`;
+            alert.style.top = `${Math.random() * 60 + 10}%`;
+        });
+        // 4. Eyes Following Cursor already implemented above
+
+        // 5. Static Overlay is purely CSS-based
+
+        // 7. Scrolling Text is purely CSS-based
+
+        // 1. Glitch Overlay is purely CSS-based
+
+        // Floating code and faces already handled in previous scripts...
+
+        // Existing Audio
+        const audio = new Audio('https://www.soundjay.com/ambient/sounds/creepy-ambient-01.mp3'); // Replace with your audio file
+        audio.loop = true;
+        audio.volume = 0.2;
+        audio.play().catch(e => console.log('Audio playback failed:', e));
+    </script>
+</body>
+</html>
+<script>
+    // 6. Creepy Button Functionality
+    const creepyButton = document.getElementById('creepy-button');
+    const hoverSound = new Audio('OHM.WAV'); // Replace with a creepier sound if desired
+
+    // Play sound on hover
+    creepyButton.addEventListener('mouseenter', () => {
+        hoverSound.currentTime = 0;
+        hoverSound.play().catch(e => console.log('Audio playback failed:', e));
+    });
+
+    // Redirect to god.html on click
+    creepyButton.addEventListener('click', () => {
+        window.location.href = 'god.html'; // Update path if necessary
+    });
+</script>
+</html>
