@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KILL COUNT [ACCESSED: FATAL ERROR]</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        body {
+            background: #000;
+            color: #f00;
+            font-family: 'VT323', monospace;
+            margin: 0;
+            overflow-x: hidden;
+            cursor: crosshair;
+            animation: backgroundNoise 0.2s infinite;
+        }
+
+        @keyframes backgroundNoise {
+            0% { background-image: url("/api/placeholder/2/2"); }
+            50% { background-image: url("/api/placeholder/3/3"); }
+            100% { background-image: url("/api/placeholder/2/2"); }
+        }
+
+        .screamer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("/api/placeholder/100/100");
+            display: none;
+            z-index: 1000;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255,0,0,0.1),
+                rgba(255,0,0,0.1) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            pointer-events: none;
+            z-index: 1;
+            animation: noiseMove 0.5s infinite;
+        }
+
+        @keyframes noiseMove {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(2px, 2px); }
+            50% { transform: translate(-2px, -2px); }
+            75% { transform: translate(2px, -2px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.8);
+            border: 3px double #f00;
+            animation: borderPulse 2s infinite;
+        }
+
+        @keyframes borderPulse {
+            0% { border-color: #f00; }
+            50% { border-color: #800000; }
+            100% { border-color: #f00; }
+        }
+
+        .blood {
+            background: linear-gradient(to bottom, 
+                transparent,
+                rgba(255,0,0,0.2) 20%,
+                rgba(255,0,0,0.4) 40%,
+                rgba(139,0,0,0.6) 60%,
+                rgba(139,0,0,0.8) 80%,
+                rgba(139,0,0,1) 100%
+            );
+            height: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .capy-card {
+            background: #111;
+            border: 3px solid #600;
+            padding: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .capy-card::before {
+            content: "CLICK TO RELEASE";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #f00;
+            text-shadow: 0 0 10px #f00;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2;
+        }
+
+        .capy-card:hover::before {
+            opacity: 1;
+        }
+
+        .capy-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #f00;
+            filter: contrast(150%) brightness(70%);
+        }
+
+        .capy-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: sepia(50%) hue-rotate(300deg) contrast(150%) brightness(70%);
+            transition: all 0.3s;
+        }
+
+        .capy-card:hover .capy-img {
+            filter: sepia(100%) hue-rotate(720deg) contrast(200%) brightness(50%);
+        }
+
+        .cursed {
+            animation: cursedEffect 4s infinite;
+        }
+
+        @keyframes cursedEffect {
+            0% { filter: hue-rotate(0deg) contrast(150%); }
+            50% { filter: hue-rotate(180deg) contrast(300%); }
+            100% { filter: hue-rotate(360deg) contrast(150%); }
+        }
+
+        .warning {
+            color: #f00;
+            text-align: center;
+            padding: 20px;
+            font-family: monospace;
+            text-shadow: 0 0 10px #f00;
+            animation: warningFlash 1s infinite;
+        }
+
+        @keyframes warningFlash {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            51% { opacity: 1; }
+            75% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        #kill-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #f00;
+            font-size: 2em;
+            text-shadow: 0 0 5px #f00;
+            z-index: 1000;
+        }
+
+        .hidden-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            background: #000;
+            padding: 20px;
+            border: 1px solid #f00;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="screamer"></div>
+
+    <div class="header">
+        <h1>KILL COUNT [ACCESSED]</h1>
+        <div class="blood"></div>
+        <p>[SYSTEM]: FATAL ERROR - BREACH DETECTED</p>
+    </div>
+
+    <div class="warning">
+        ⚠️ WARNING: COGNITOHAZARD DETECTED ⚠️
+        <br>
+        VIEWER DISCRETION IS [TERMINATED]
+        <br>
+        ACCESSING THESE FILES WILL [DATA EXPUNGED]
+        <br>
+        YOUR IP HAS BEEN [LOGGED]
+        <br>
+        CURRENT DEATH COUNT: ███████
+    </div>
+
+    <div class="grid" id="capyGrid">
+        <!-- JavaScript will populate this -->
+    </div>
+
+    <div id="kill-counter">DEATHS: 0</div>
+
+    <script>
+        let deathCount = 0;
+        const disturbing_texts = [
+            "IT SEES YOU",
+            "THEY'RE IN YOUR WALLS",
+            "DON'T LOOK BEHIND YOU",
+            "YOUR DEVICE IS NOW INFECTED",
+            "THEY'RE COMING",
+            "YOU CAN'T ESCAPE",
+            "IT'S TOO LATE",
+            "YOU SHOULDN'T HAVE CLICKED",
+            "[FATAL ERROR: SANITY.exe NOT FOUND]",
+            "YOUR SOUL IS NOW FORFEIT",
+        ];
+
+        function createCapyGrid() {
+            const grid = document.getElementById('capyGrid');
+            const levels = Array.from({length: 25}, (_, i) => i + 1).concat([999]);
+
+            levels.forEach(level => {
+                const card = document.createElement('div');
+                card.className = `capy-card ${level === 999 ? 'cursed' : ''}`;
+                card.innerHTML = `
+                    <img src="gangcapy/lvl${level}.jpeg" alt="LVL${level} CAPY" class="capy-img">
+                    <h3>LVL ${level} - ${getCapyTitle(level)}</h3>
+                    <p class="cursed-text">KILL COUNT: ${level * 666}</p>
+                `;
+                card.onclick = () => triggerCurse(level);
+                grid.appendChild(card);
+            });
+        }
+
+        function getCapyTitle(level) {
+            if (level === 999) {
+                return "Ỵ̷̨̛̠͇̫̖̠̪̪̩͉̐̈́̈́̓̿͑͊̊͘͝͝Ơ̶̡̨̢̺͇͖͎̞̗̠̻̩̯̪̬̈́͒̈́͐̒̽̋͐͌̈́̈́͗̾͗̕͜͠Ų̶̡̢̛̹͕͕͕̼̥͍̬̱̬̯̥̘͈̖̞̣͍̜̠̟̘̜̤̙̝̗̖͍͖͔̲̩̼̬͉͚͎̞̱̒̈́͗̏͋̈́̍͐͋͑̏̈́̒̆͋̅̾̓͊̅͛̕͘̕͜ͅR̷̨̧̡̛̗̝͓͈̲̣̰͉͉̩̺͙͍̘̼̮̭͓̫̲͉̖͚͈̤̻̭̖͈̘̥̤̘̰͔̳̝̋̇͒̐̄̈́̆̃̓̀̄̔̚͜͜ ̶̨̡̢̛̫̖̻̖̖̦̘̫̱̫͙̤̲̤͈̺͇̯̼̺̼͖̙͇͖̪͎̜̥͎͚͍͓͚̖̬͎̗̹͚̳̼̎͛̔̾̓̔̑̓̓̌̈́͊̈͗͊̈́̈́̂̇̾̈̚͠͠S̴̨̛̝͙̦̜̣̗̺͔̤͚͔̞̲͌͆͛̆̌̈́̀̍̾̿̽̎̇͌̂͒̑̔̾̄͂̈͊̀̈́̈́̋͋̐͆͋͑̋̚̕̚̚̕̚͝͝͠͝Ơ̷̢̨̢̥͇̦͈̞̺̥̗̦̼͖͚̰͙̭̺̺̞̝̞͕̩͍̲̯̝̎̑͊̈́̃̐͌͌̌̅̿̃͗͒̿̒̂͗̍̿͌̍̈́̆̅̑̏̈́̎̿̍̈́̅̄̌̌̄̐͝͝Ų̵̛̛͈̲͈̳͇̝̲͔͈͙̦̣̝̝̦̩͚̞̯̭͚̰͎͖͌̈̈̓͗̏̈́̈́̃̈́̂͐͒̐̄͋͊̅̈́̆̈́̌̽͌̈́̋̊̾̈́̿̎͛͒̅̇̔͋̕̕̚͘͜͝͝͝͝͝L̴̡̨̛̩̯̘̙̜̹̝̗͉̰͉̗͌͐̈́̈́̓͗̄̏̉͑̈́͗̋͂̓̽̅͊̑̑̔̾̚͘͝͠͝ͅ";
+            }
+            const titles = [
+                "INFECTED", "CORRUPTED", "TAINTED", "POSSESSED", "DAMNED",
+                "CURSED", "FORBIDDEN", "HAUNTED", "CONDEMNED", "MARKED",
+                "DOOMED", "TWISTED", "DERANGED", "DEMENTED", "TORMENTED",
+                "FORSAKEN", "MUTILATED", "DESECRATED", "SACRIFICED", "BUTCHERED",
+                "SLAUGHTERED", "DECIMATED", "ANNIHILATED", "OBLITERATED", "ERADICATED"
+            ];
+            return titles[level - 1] || "ERROR";
+        }
+
+        function triggerCurse(level) {
+            deathCount += level;
+            document.getElementById('kill-counter').textContent = `DEATHS: ${deathCount}`;
+            
+            if (level === 999) {
+                document.body.style.animation = 'cursedEffect 0.1s infinite';
+                const scream = new Audio('data:audio/wav;base64,UklGRj...');
+                scream.play();
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 1000);
+            }
+
+            const randomText = disturbing_texts[Math.floor(Math.random() * disturbing_texts.length)];
+            const message = document.createElement('div');
+            message.className = 'hidden-message';
+            message.textContent = randomText;
+            document.body.appendChild(message);
+            
+            setTimeout(() => message.remove(), 1000);
+        }
+        function triggerCurse(level) {
+    deathCount += level;
+    document.getElementById('kill-counter').textContent = `DEATHS: ${deathCount}`;
+    
+    // Play sound on click
+    const clickSound = new Audio('  Whispers.wav'); // Replace with your sound file's URL or path
+    clickSound.play();
+
+    // Other effects...
+    const randomText = disturbing_texts[Math.floor(Math.random() * disturbing_texts.length)];
+    const message = document.createElement('div');
+    message.className = 'hidden-message';
+    message.textContent = randomText;
+    document.body.appendChild(message);
+    
+    setTimeout(() => message.remove(), 1000);
+}
+
+        createCapyGrid();
+    </script>
+</body>
+</html>

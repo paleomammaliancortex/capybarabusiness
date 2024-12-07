@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRYPTOⒸⒶⓅⓎ // ASCENSION PROTOCOL</title>
+    <style>
+        body {
+            background: #000;
+            color: #0f0;
+            font-family: "Courier New", monospace;
+            margin: 0;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0,255,0,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,0,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .glitch {
+            animation: glitch 1s linear infinite;
+            text-shadow: 
+                2px 2px #ff0000,
+                -2px -2px #00ff00,
+                4px 4px #0000ff;
+        }
+
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px,0) skew(0deg); }
+            4%, 60% { transform: translate(-2px,0) skew(0deg); }
+            62% { transform: translate(0,0) skew(5deg); }
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.8);
+            border-bottom: 2px solid #0f0;
+        }
+
+        .ticker {
+            background: #111;
+            padding: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .ticker-item {
+            margin: 0 20px;
+            font-family: monospace;
+        }
+
+        .positive { color: #0f0; }
+        .negative { color: #f00; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .capy-card {
+            background: #111;
+            border: 2px solid #0f0;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .capy-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #0f0;
+        }
+
+        .capy-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            filter: hue-rotate(45deg) saturate(150%);
+        }
+
+        .lvl999 {
+            animation: rainbow 2s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { border-color: red; }
+            33% { border-color: blue; }
+            66% { border-color: green; }
+            100% { border-color: red; }
+        }
+
+        .sponsors {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            padding: 20px;
+            border: 1px solid #0f0;
+            z-index: 100;
+        }
+
+        .warning {
+            color: #f00;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8em;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="glitch">CRYPTOⒸⒶⓅⓎ // ASCENSION PROTOCOL</h1>
+        <p>『ＰＡＬＥＯＭＡＭＭＡＬＩＡＮ ＣＯＮＶＥＲＧＥＮＣＥ』</p>
+    </div>
+
+    <div class="ticker">
+        <div class="ticker-content">
+            <span class="ticker-item positive">CAPY.NIPA ▲ 1243.5 +3.2%</span>
+            <span class="ticker-item negative">NOVO.CAPY.PERFORMANCE (ACC) ▼ 943.2 -1.8%</span>
+            <span class="ticker-item positive">OKIPULLUP.BONDS ▲ 3210.9 +8.1%</span>
+            <span class="ticker-item positive">DOGECUM ▲ 2987.7 +5.6%</span>
+            <span class="ticker-item negative">SLAM-WACK.FANDANGO.COIN ▼ 123.8 -0.4%</span>
+            <span class="ticker-item positive">MARROW.LIQUIDITY ▲ 4312.0 +6.3%</span>
+            <span class="ticker-item negative">PALEOMAMMALIAN.INVEST ▼ 564.1 -2.7%</span>
+            <span class="ticker-item positive">ESOTERIC.CAPY.NETWORK ▲ 987.6 +4.9%</span>
+        </div>
+    </div>
+
+    <div class="warning">
+        WARNING: ACCESSING CAPYBARA MAINFRAME... REALITY BIFURCATION IMMINENT
+        <br>
+        BY ENTERING YOU ACCEPT THE RISK OF MEMETIC CONTAMINATION
+    </div>
+
+    <div class="grid">
+        <div class="capy-card" onclick="toggleSponsors(1)">
+            <img src="gangcapy/lvl1.jpeg" alt="LVL1 CAPY" class="capy-img">
+            <h3>LVL 1 - STREET CAPY</h3>
+            <p>「BASIC RODENT OPERATIONS」</p>
+            <div class="sponsors" id="sponsors1">
+                <p>SPONSORED BY: CAPY.NIPA</p>
+                <p>STAKE: 1243.5 CAPYCOIN</p>
+            </div>
+        </div>
+
+        <div class="capy-card" onclick="toggleSponsors(15)">
+            <img src="gangcapy/lvl15.jpeg" alt="LVL15 CAPY" class="capy-img">
+            <h3>LVL 15 - CYBER CAPY</h3>
+            <p>「ADVANCED WETWARE INTEGRATION」</p>
+            <div class="sponsors" id="sponsors15">
+                <p>SPONSORED BY: MARROW.LIQUIDITY</p>
+                <p>STAKE: 4312.0 CAPYCOIN</p>
+            </div>
+        </div>
+
+        <div class="capy-card" onclick="toggleSponsors(25)">
+            <img src="gangcapy/lvl25.jpeg" alt="LVL25 CAPY" class="capy-img">
+            <h3>LVL 25 - QUANTUM CAPY</h3>
+            <p>「TIMELINE CONVERGENCE SPECIALIST」</p>
+            <div class="sponsors" id="sponsors25">
+                <p>SPONSORED BY: ESOTERIC.CAPY.NETWORK</p>
+                <p>STAKE: 987.6 CAPYCOIN</p>
+            </div>
+        </div>
+
+        <div class="capy-card lvl999" onclick="toggleSponsors(999)">
+            <img src="gangcapy/lvl999.jpeg" alt="LVL999 CAPY" class="capy-img">
+            <h3>LVL 999 - TRANSCENDENT CAPY</h3>
+            <p>「ＨＹＰＥＲＳＴＩＴＩＯＮＡＬ ＥＮＴＩＴＹ」</p>
+            <div class="sponsors" id="sponsors999">
+                <p>SPONSORED BY: [REDACTED]</p>
+                <p>STAKE: ∞ CAPYCOIN</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSponsors(level) {
+            const sponsors = document.getElementById(`sponsors${level}`);
+            const allSponsors = document.getElementsByClassName('sponsors');
+            
+            for (let sponsor of allSponsors) {
+                if (sponsor !== sponsors) {
+                    sponsor.style.display = 'none';
+                }
+            }
+            
+            sponsors.style.display = sponsors.style.display === 'block' ? 'none' : 'block';
+            
+            if (level === 999) {
+                document.body.style.animation = 'glitch 0.3s infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 1000);
+            }
+        }
+
+        // Duplicate ticker content for infinite scroll
+        const ticker = document.querySelector('.ticker-content');
+        ticker.innerHTML += ticker.innerHTML;
+    </script>
+    <style>
+        body {
+            font-family: "Comic Sans MS", sans-serif;
+            background-color: #ffe4e1; /* Light pink retro color */
+            color: #000080; /* Dark blue text */
+            text-align: center;
+            padding: 50px;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff7f50, #ff4500);
+            border: 3px solid #000080;
+            color: white;
+            text-shadow: 2px 2px #000;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            animation: pulse 1.5s infinite;
+        }
+        .button:hover {
+            background: linear-gradient(90deg, #ff4500, #ff7f50);
+            box-shadow: 0px 0px 15px #ff4500;
+        }
+        .emoji {
+            font-size: 1.8em;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🖥️ HEY THERE LITTLE GUY🎉</h1>
+    <p>Click below to see ADVANCED <b>admin.sys</b>!</p>
+    <a href="god2.html" class="button">
+        🚀 BUT DONT BE TOO CURIOUS Admin.Sys 🛠️
+    </a>
+</body>
+</body>
+</html>
