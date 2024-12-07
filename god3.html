@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: #000;
+      color: #5c0000;
+      font-family: monospace;
+      margin: 0;
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      animation: glitch 0.3s infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0) }
+      20% { transform: translate(-2px, 2px) }
+      40% { transform: translate(-2px, -2px) }
+      60% { transform: translate(2px, 2px) }
+      80% { transform: translate(2px, -2px) }
+      100% { transform: translate(0) }
+    }
+
+    .capy {
+      width: 300px;
+      height: 300px;
+      margin: 20px auto;
+      display: block;
+      filter: invert(1) hue-rotate(180deg);
+      animation: rotate 30s infinite linear;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .text {
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: justify;
+      margin: 20px 0;
+      animation: flicker 0.1s infinite;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.95; }
+      100% { opacity: 1; }
+    }
+
+    .quote {
+      border-left: 3px solid #5c0000;
+      padding-left: 20px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+
+    .hidden {
+      color: transparent;
+      user-select: none;
+    }
+
+    .hidden:hover {
+      color: #ff0000;
+      text-shadow: 0 0 10px #ff0000;
+    }
+
+    #counter {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #5c0000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="holyfuck.png" alt="Glitched Capybara" class="capy">
+    
+    <div class="text">
+      The capybara watches. Always watches. In its eyes, we see the reflection of our collective consciousness, our shared despair.
+    </div>
+
+    <div class="quote">
+        "An oasis of horror in a desert of boredom," they said—but what if the oasis is a capybara, both savior and warden? It sits, timeless and unblinking, where the monotony fractures into dread. To approach it is to question: Is the horror a refuge from the desert, or the desert’s true form revealed?
+    </div>
+
+    <div class="text">
+      The symparanekromenoi whisper of truths beyond our comprehension. They speak of the capybara's true form - not the gentle giant we perceive, but an ancient being that exists in the spaces between reality.
+    </div>
+
+    <div class="hidden">
+      T̸̨̛̛̟̱͍̘̭̩̪̲̣͔̤̪̘̣̗̼̖̰̦̠̩͎̲͚̱̖̟̪̲̟̮̘͕̝̬͍̲̩̺̹͇̟̼̙̤͔̼̝̝͔͕̘̖͉͓̘̪̦̙̼̬͖̻̼͈̰̮͚͎̫̝̱̳͖̰̲̪͔̞̩̺̼̟̻̱͈͔̘͉̫̝̘͍̦̲̫̗̪̺͇͚̭̼̱̲͎͈̩̜͇͍͕͎̪̝͍̙̻̦̫͍͍̣͓̯̹̪̲̱̟͍̮̱̝͎̩̫̜̭̼̮̲͕͙̲̥̱̗͉͈̮̘̠̲̩͚̩̫͖̞̱̪̹̮̩͎̩̤̠̝͎̻̘͚͈̬̝̖͎̟̝̳̣̠͋̈́̈́̂̈́̈́̍̃̌̾̅̓̎̑̐̈́̊͂̽̏̌̓̓̏̅̒͗͌̂͐̏̓̔̑̏̉͋͒͂̍̌͒̀̈́͆̑͐̿̄̌̈́̊̒̈͗̑͛͋̓̀̋͌̓̀̎̓̐̃̈́͐͑̇̎̓̀͂̔̉̅̅̏̃̓́͐̐̆̇͗̉̃̉̆̀͗̀̆͒̅̔̽̂͆̈́͂̇̅͋̈̾̈́͂̃̓͒͗̔͌̿͗̆̿́̈́͊͌̈́͑̈́͒͊̌͒̀̑̈́͗̈́͑͒̋̈́̚̕͘͘͘̕͘͜͜͜͠͝͝͝͝͝͠͝͝ͅͅͅͅḩ̸̨̡̢̡̢̢̡̢̧̡̨̨̧̧̧̨̧̢̡̛̛̛̛̛̛̱͇̹̬͚̦̯͇̼̱͓͔̫͙̭̦̟̣̮̝̺̱̫̲̲̬̻̠̼̟̫̬̦̲̭͎̫̺̗̻͚͚̹͇̤͕̯̭͔͎͉̼̳̙͖͈̥̹͚̞͚̪͖̣͍̺͎̼̟̼̯̤̫̱̳̫̺̫̳̩̱͉͇̩̖̹͇̹̪͓̼̼͎̙͈͖̩͖̘̦͇̹̤̬̞̟̹̩͚̗̭̥̭̠͎̬̭̫̰̤͎̝̫̫̘̯̪̥̻̘̯͚̜̬̞͕̦̼̗̙̖̞̬̠̗̪̝̟̫͈͉̝̜͕̫̝̙͙̣͇̤̦͇͍̺͇̩͎͇̦̜̩̙͇̣͎̭͎͓͍͔̹̥͈̝̖͎̙͎̬̘̼̘̩͍͎̲̳̬͓̪͈̜̣̗̖̣̥̖̭̊̉̓̆͛̀̂̈́̔̾̂͌̄̉̒̽̉̓͛͆̽̔̃͋̋̽̿̈̇̊̐͗͒̔̅̔̾̓̅̃̆̂̋̄̾͒̇̾̀͂̾͑̔̇̒͋̆͂̒̈́̃̽̋̈́̎͗̌͋̒͐̎̈́̋͊̏̈́͐̈́̍͒͒̎͒̈̎̾̔͒̅̊͐͆̌̄̈́̉̀̽̒̇̋̑͑́̽̈́̔̑̇͂̂̌̊̈́̆̅̈̿̓̍̓̒͊̍͗͂̒̇͋̔̂̌̌̂̃̓̈́͊̈́͆͋̽̏̿̀̈́̆̏͌̓̉̊͗̌̏͊͒̌̄͊͛̅̐̍̾̒̓̿̑̔̔͋̓͂̏̉͒̽̆̾̆͋̄̂̾̏͊̀͊̂̐̔̉͊̄͗͆̅̊̾̔̌͗̎̈̈́̂̈́͊̄̑̿͂̒̿̑͐͐̒̀̒̓̈́̉̿̔̆̉̋͒͌͗͊̽́̆̍̅̐͐̇͋̿̂̌̐̈̿͘̕̚͘͘̚͘̚̚̚̚͘̚̚̚̚̕͜͜͜͜͜͜͝͝͝͝͝͝͠͝͝͝͝͝͝͝͝͝͠͝͠͝͠ͅͅͅͅͅę̷̢̢̡̡̧̨̧̨̡̢̧̢̡̧̡̧̧̡̡̧̛̛̛̟̭̫͇̩̗̝̩̱̗̪͙̳̯͔̫̹̩̬̣̟̠̯̲͎̲̱͙͚̙̼͈̙̱̻̮̼͖͚̻͓̪̝̣̫̬̻͍̖͍͉̮̯̰̠͖̗̥͍̙̙͍̹̦̣̟̻̫̳̦̣̻̖̯͇͔̬̲̲͚̮̦̲̪̥̘̰̱̱͍͈͈̪̼͈͎̠̲̤̼̘̝͙̟͔̲͎̣͕̮̥̙͉̱̹̞͉̖̰͖̬̟̺̘̱͎̩͍̪̙͈͚͇̩͈̼̙͈̻̪̞̗̜͕̗̣̟̜̞͎̦͙͈͖͇̱͚̙͇̥̖͔̟͎̭̭̙͖̩̤̟̹̣̹̤̟͔͈̬̞̯̝̼̺̹̦̝̘̲̭̣̺̤̜͉̜̤͎͍͓̭̦̞̣͔̝͈̟̥̭̼̠͙̯̳͔̩̟̰̭̙̤̫͙̝͎̪̙̝̻͙̺̎̑̈́̊̎̈͊̎͒͑̈́̒̈́̂̑͑̄̎̀̄͊͒̈́͊̊̈̎͛̈́͛͒̈́̍̅̒̓͊͂͊́̉͗̈́̿̉̃̈́̈́̆̽̐͋̊̿̏͊̄̈́̑͗̅̉̃̊̃̓̋̾̇̓̈̑̑̾̈́̃̈́̿̐̍̈́͗̾̂͗̾̄̊͒̈́̎̾̄̌̈́̏̉̑̏̄͒̓̋͛͗͌̐̊͒̐̿̐̈́̐͆͘̚̕̚͘͘͘͜͜͜͜͜͜͜͝͝͝͝͝͝͝͝͝͠ͅͅͅͅͅͅ ̶̨̨̡̨̧̧̧̢̨̨̡̡̢̢̧̨̨̨̡̢̨̛̛̛̛̛̰̫̬͉̦͎̦̞̜̱̺̗͈͍̮͔̤͈̺̼̻̪̝̯̲͖̘̰̰̮̯̺̯̮̠̖͓̱͔̮̙̫̯͍̭̣̥̩̼̠̪̻̙̪̯̠͎͈̻̩̺͈̰̭̝͎̙̲͇̫̱̖̮̭̰̹̻̹̯͈͉̟͙̘͚̝̲͈͖̱̝̲̹̼͕̮̮̳̫̦̥̯̭̦̝̪̞̲̞̭̫͙̙̫̻͖̖̯̲̱͈̥̣͕̲̮̩̻̦̯͙̣̳̳̤̜͎̣̹̬̯͓̘̖̜̩̱̻͍̮̼̻̤̠̙̞̲̙̭̤͎̝͔͍̫̲̟̲͚̠̹̯̹̻̰͕̳͖̫̫̩̥̜̲̝͇̞̱̝̗̬̬̙̞͖̦̮̹̪̫͇̳̮̬̻̹͙̱̼̺̭̰̮̭̪͍̲͖͉͎̬̥͖̙̱̤̒̃̅̆̈́̐̋̈́̈́̒͌͑̏͋̿̐͆͌̆̇̃̆̅̌̅̊̂̾͐̈́̓̾̏̆̒̒<style>
+        body {
+          cursor: none;
+        }
+      
+        .cursor-trail {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: #ff0000;
+          border-radius: 50%;
+          pointer-events: none;
+          animation: trail-fade 1s forwards;
+        }
+      
+        @keyframes trail-fade {
+          0% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(0); }
+        }
+      </style>
+      
+      <script>
+        document.addEventListener('mousemove', e => {
+          const trail = document.createElement('div');
+          trail.className = 'cursor-trail';
+          trail.style.top = `${e.clientY}px`;
+          trail.style.left = `${e.clientX}px`;
+          document.body.appendChild(trail);
+          setTimeout(() => trail.remove(), 1000);
+        });
+      </script>
+<style>
+    .hidden-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 32px;
+      font-weight: bold;
+      color: #ff0000;
+      text-shadow: 0 0 10px #ff0000;
+      display: none;
+    }
+  </style>
+  
+  <div class="hidden-message"> 𒅒𒈔𒅒𒇫𒄆
+   </div>
+  <style>
+    .inverted-gravity {
+      position: absolute;
+      top: 100%;
+      font-size: 20px;
+      animation: float-up 5s infinite linear;
+      transform: rotate(180deg);
+      color: #ff0000;
+    }
+  
+    @keyframes float-up {
+      0% { top: 100%; }
+      100% { top: -10%; }
+    }
+  </style>
+  
+  <div class="inverted-gravity"></div>
+  
+  <script>
+    setInterval(() => {
+      const message = document.querySelector('.hidden-message');
+      message.style.display = 'block';
+      setTimeout(() => message.style.display = 'none', 200);
+    }, Math.random() * 5000);
+  </script>
+  <audio id="cursed-audio" src="cursed.wav"></audio>
+
+  <script>
+    const cursedAudio = document.getElementById('cursed-audio');
+  
+    function playCursedSound() {
+      cursedAudio.currentTime = 0;
+      cursedAudio.volume = Math.random();
+      cursedAudio.play();
+      setTimeout(playCursedSound, Math.random() * 10000 + 1000); // Random interval
+    }
+  
+    playCursedSound();
+  </script>  
+        <style>
+            .dripping-text {
+              font-size: 48px;
+              font-family: 'Courier New', monospace;
+              color: #5c0000;
+              position: relative;
+              animation: drip-animation 3s infinite;
+            }
+          
+            .dripping-text::before {
+              content: '';
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              background: red;
+              top: 100%;
+              left: 0;
+              clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+              animation: drip-move 1s infinite;
+            }
+          
+            @keyframes drip-animation {
+              0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+              50% { clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%); }
+            }
+          
+            @keyframes drip-move {
+              0%, 100% { transform: translateY(0); }
+              50% { transform: translateY(30px); }
+            }
+          </style>
+          
+          <div class="dripping-text">꧁操你꧂ ꧁操你꧂ ꧁操你꧂ </div>
+        
+          
