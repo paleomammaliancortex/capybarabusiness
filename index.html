@@ -1,5 +1,152 @@
     ​<!DOCTYPE html>
     <html lang="en">
+        <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Capybara Surveillance Network</title>
+        <style>
+            body {
+                background: black;
+                color: limegreen;
+                font-family: "Courier New", Courier, monospace;
+                margin: 0;
+                overflow: hidden; /* Prevent scrolling */
+            }
+            #overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 10);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999; /* Ensure it's on top */
+            }
+            #capybara {
+                text-align: center;
+                font-size: 30px;
+                color: limegreen;
+                cursor: pointer;
+                border: 2px solid limegreen;
+                padding: 20px;
+                animation: flicker 1s infinite;
+            }
+            @keyframes flicker {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.8; }
+            }
+            #content {
+                display: none; /* Hide the main content until interaction */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Overlay -->
+        <div id="overlay">
+            <div id="capybara">
+                 PRESS TO ENTER CAPYBARA BUSINESS
+            </div>
+        </div>
+
+        <script>
+            // Titles for the joke
+            const titles = [
+                "Capybara Surveillance Active",
+                "🐾 Deploying Cyber Capybaras 🐾",
+                "Nick Land Was Right",
+                "Downloading Hacker Memes...",
+                "Press For Ultimate Truth"
+            ];
+            let idx = 0;
+    
+            // Change title every 3 seconds
+            setInterval(() => {
+                document.title = titles[idx % titles.length];
+                idx++;
+            }, 3000);
+    
+            // Create Audio
+            const audio = new Audio('iamfalling.mp3'); // Replace with your mp3 file
+            audio.loop = true;
+            audio.volume = 0.05;
+    
+            // Overlay Interaction
+            const overlay = document.getElementById('overlay');
+            const capybara = document.getElementById('capybara');
+            const content = document.getElementById('content');
+    
+            capybara.addEventListener('mouseover', () => {
+                capybara.textContent = "PRESS TO ESCAPE THE LOOP OF MODERNITY";
+            });
+    
+            capybara.addEventListener('click', () => {
+                capybara.textContent = "LOADING... ₍ᐢ-(ｪ)-ᐢ₎▶︎ •၊၊||၊|။||||။‌‌‌‌‌၊|• 3:32";
+                capybara.style.color = "purple";
+                capybara.style.fontSize = "40px";
+    
+                // Play audio
+                audio.play().catch(err => console.error("Audio playback failed:", err));
+    
+                // Remove overlay and show content
+                setTimeout(() => {
+                    overlay.style.display = "none";
+                    content.style.display = "block";
+                    document.body.style.overflow = "auto"; // Enable scrolling
+                }, 2000);
+            });
+        </script>
+    </body>
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>capybare.business</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+        .overlay h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .force-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .force-button:hover {
+            background: #666;
+        }
+    </style>
+</head>
+
+</html>
+
     <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -790,7 +937,7 @@ document.body.addEventListener('click', () => {
         bottom: 210px;
         left: 20%; /* Center horizontally */
         transform: translateX(-50%); /* Center alignment */
-        z-index: 9999; /* Bring it to the topmost layer */
+        z-index: 9998; /* Bring it to the topmost layer */
         background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
         padding: 10px 20px;
         border: 2px solid #0f0; /* Green border for styling */
