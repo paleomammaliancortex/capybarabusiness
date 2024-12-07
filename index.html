@@ -1,335 +1,401 @@
-​<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>capybare.business</title>
-<style>
-    body {
-        margin:0; padding:0;
-        background:#000;
-        color:#0f0;
-        font-family: monospace;
-        overflow:hidden;
-        cursor: crosshair;
-        perspective:1000px;
-    }
-
-    /* Overall flicker of the scene */
-    @keyframes sceneWaves {
-        0%,20%,50%,70%,100% {filter: none;}
-        10% { filter: blur(1px) brightness(1.2); }
-        30% { filter: contrast(2) hue-rotate(90deg); }
-        60% { filter: hue-rotate(180deg) invert(1); }
-        80% { filter: brightness(0.8) contrast(3); }
-    }
-
-    .container {
-        position:relative;
-        width:100vw; height:100vh;
-        padding:20px;
-        box-sizing:border-box;
-        animation:sceneWaves 5s infinite;
-        transform-style: preserve-3d;
-    }
-
-    /* The title: flickering, glitching, rotating */
-    .title {
-        font-size:3em;
-        text-shadow:0 0 10px #0f0;
-        animation: glitchTitle 3s infinite;
-        transform: translateZ(100px) rotateY(10deg);
-    }
-
-    @keyframes glitchTitle {
-        0%,100% { color:#0f0; text-shadow:0 0 10px #0f0;}
-        10% { color:#f00; text-shadow:-2px 0 #f00;}
-        20% { color:#00f; text-shadow:2px 0 #00f;}
-        30% { color:#0f0; text-shadow:0 0 10px #0f0; }
-        40% { color:#ff0; text-shadow:0px -2px #ff0;}
-        50% { color:#0f0; }
-        60% { color:#0f0; transform:rotateY(180deg);}
-        70% { color:#f0f; transform:rotateY(0deg);}
-        80% { color:#0f0;}
-    }
-
-    /* Intense intro text block, flickering and distorting */
-    .intro {
-        margin-top:20px;
-        max-width:800px;
-        line-height:1.4em;
-        position:relative;
-        white-space:pre-wrap;
-        font-size:1em;
-        animation: textShudder 5s infinite;
-        transform: translateZ(50px) rotateX(5deg);
-    }
-
-    @keyframes textShudder {
-        0%,100% {opacity:1;transform:translateX(0);}
-        10% {opacity:0.8; transform:translateX(2px);}
-        20% {opacity:0.6; transform:translateX(-2px);}
-        30% {opacity:0.9; transform:translateX(1px);}
-        40% {opacity:1; transform:translateX(-1px);}
-        50% {opacity:0.7; transform:translateY(-1px);}
-        60% {opacity:0.8; transform:translateY(1px);}
-        70% {opacity:1; transform:translateX(0);}
-        90% {opacity:0.5; transform:translateX(-3px);}
-    }
-
-    /* Multiple glitch overlays, lines, and shapes */
-    .glitch-overlay-1, .glitch-overlay-2 {
-        position:absolute;
-        top:0;left:0;right:0;bottom:0;
-        pointer-events:none;
-        mix-blend-mode:difference;
-    }
-
-    .glitch-overlay-1 {
-        background: repeating-linear-gradient(
-            0deg,
-            rgba(0,255,0,0.05),
-            rgba(0,255,0,0.05) 1px,
-            rgba(0,0,0,0.1) 1px,
-            rgba(0,0,0,0.1) 2px
-        );
-        animation: overlayShift 2s infinite;
-    }
-
-    .glitch-overlay-2 {
-        background: repeating-linear-gradient(
-            90deg,
-            rgba(0,255,0,0.02),
-            rgba(0,255,0,0.02) 2px,
-            rgba(0,0,0,0.1) 2px,
-            rgba(0,0,0,0.1) 4px
-        );
-        animation: overlayShift2 3s infinite;
-    }
-
-    @keyframes overlayShift {
-        0% {transform:translateY(0);}
-        50% {transform:translateY(-10px);}
-        100% {transform:translateY(0);}
-    }
-    @keyframes overlayShift2 {
-        0% {transform:translateX(0);}
-        50% {transform:translateX(-5px);}
-        100% {transform:translateX(0);}
-    }
-
-    /* ASCII capybara terror cube */
-    .ascii-cube {
-        position:absolute;
-        width:250px; height:250px;
-        top:50%; left:50%;
-        transform: translate(-50%,-50%) rotateX(30deg) rotateY(40deg);
-        transform-style: preserve-3d;
-        animation: cubeSpin 20s infinite linear;
-        z-index:999;
-    }
-
-    @keyframes cubeSpin {
-        0% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(40deg);}
-        25% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(130deg);}
-        50% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(220deg);}
-        75% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(310deg);}
-        100% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(400deg);}
-    }
-
-    .face {
-        position:absolute;
-        width:100%; height:100%;
-        backface-visibility:hidden;
-        background:#001000;
-        display:flex;
-        align-items:center;justify-content:center;
-        color:#0f0;
-        font-size:0.7em;
-        padding:10px;
-        box-sizing:border-box;
-        text-align:center;
-    }
-
-    .front {transform: translateZ(125px);}
-    .back {transform: rotateY(180deg) translateZ(125px);}
-    .right {transform: rotateY(90deg) translateZ(125px);}
-    .left {transform: rotateY(-90deg) translateZ(125px);}
-    .top {transform: rotateX(90deg) translateZ(125px);}
-    .bottom {transform: rotateX(-90deg) translateZ(125px);}
-
-    /* ASCII inside the cube faces - horrifying cryptic messages */
-    .face pre {
-        white-space:pre;
-        line-height:1em;
-    }
-
-    /* Hidden infiltration messages appear randomly */
-    .hidden-message {
-        position:absolute;
-        top:30%; left:10%;
-        width:300px;
-        font-size:0.9em;
-        color:#f00;
-        text-align:left;
-        opacity:0;
-        animation:hiddenMsg 25s infinite;
-        text-shadow:0 0 10px #f00;
-    }
-
-    @keyframes hiddenMsg {
-        0%,85%,100% {opacity:0;}
-        40%,50% {opacity:1;}
-    }
-
-    .hidden-message2 {
-        position:absolute;
-        bottom:10%; right:5%;
-        width:200px;
-        font-size:0.8em;
-        color:#ff0;
-        opacity:0;
-        animation:hiddenMsg2 30s infinite;
-        text-shadow:0 0 5px #ff0;
-    }
-
-    @keyframes hiddenMsg2 {
-        0%,90%,100% {opacity:0;}
-        45%,55% {opacity:1;}
-    }
-
-    /* Command prompt lines more intense and jarring */
-    .prompt {
-        margin-top:30px;
-        font-size:0.9em;
-        line-height:1.4em;
-        position:relative;
-        animation:promptFlicker 6s infinite;
-        transform:rotateX(-5deg) translateZ(40px);
-    }
-
-    @keyframes promptFlicker {
-        0%,100% {opacity:1;}
-        10% {opacity:0.5; transform:translateX(2px);}
-        20% {opacity:0.7;transform:translateX(-2px);}
-        50% {opacity:0.3;transform:translateY(-2px);}
-        60% {opacity:0.9;transform:translateY(2px);}
-        80% {opacity:0.4;}
-    }
-
-    .error-line {color:#f00;}
-    .warn-line {color:#ff0;}
-
-    /* More random cipher text flickering in/out */
-    .ciphers {
-        margin-top:40px;
-        font-size:0.8em;
-        color:#0f0;
-        opacity:0;
-        animation:ciphersAppear 15s infinite;
-    }
-
-    @keyframes ciphersAppear {
-        0%,95%,100% {opacity:0;}
-        50%,60% {opacity:1;}
-    }
-
-    /* Additional layers of ASCII nonsense */
-    .ascii-noise {
-        position:absolute;
-        top:15%; right:20%;
-        font-size:0.7em;
-        color:#0f0;
-        white-space:pre;
-        opacity:0;
-        animation:noiseAppear 12s infinite;
-    }
-
-    @keyframes noiseAppear {
-        0%,90%,100% {opacity:0;}
-        40%,50% {opacity:1;}
-    }
-
-        .clickable {
-            color: #ff0000;
+    ​<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>capybare.business</title>
+    <style>
+        body {
+            margin:0; padding:0;
+            background:#000;
+            color:#0f0;
+            font-family: monospace;
+            overflow:hidden;
             cursor: pointer;
-            text-decoration: underline;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            perspective:1000px;
         }
 
-        .clickable:hover {
-            color: #ffff00;
-            text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+        /* Overall flicker of the scene */
+        @keyframes sceneWaves {
+            0%,20%,50%,70%,100% {filter: none;}
+            10% { filter: blur(1px) brightness(1.2); }
+            30% { filter: contrast(2) hue-rotate(90deg); }
+            60% { filter: hue-rotate(180deg) invert(1); }
+            80% { filter: brightness(0.8) contrast(3); }
         }
-.choices {
-    text-align: center;
-    margin-top: 20px; /* Adjust as needed to align with your content */
-    font-size: 2rem;
-    color: #ffffff;
-}
 
-.choice {
-    color: #ff0000;
-    cursor: pointer;
-    text-decoration: none;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
+        .container {
+            position:relative;
+            width:100vw; height:100vh;
+            padding:20px;
+            box-sizing:border-box;
+            animation:sceneWaves 5s infinite;
+            transform-style: preserve-3d;
+        }
 
-.choice:hover {
-    color: #ffff00;
-    text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
-}
+        /* The title: flickering, glitching, rotating */
+        .title {
+            font-size:3em;
+            text-shadow:0 0 10px #0f0;
+            animation: glitchTitle 3s infinite;
+            transform: translateZ(100px) rotateY(10deg);
+        }
 
-.divider {
-    color: #ffffff;
-}
+        @keyframes glitchTitle {
+            0%,100% { color:#0f0; text-shadow:0 0 10px #0f0;}
+            10% { color:#f00; text-shadow:-2px 0 #f00;}
+            20% { color:#00f; text-shadow:2px 0 #00f;}
+            30% { color:#0f0; text-shadow:0 0 10px #0f0; }
+            40% { color:#ff0; text-shadow:0px -2px #ff0;}
+            50% { color:#0f0; }
+            60% { color:#0f0; transform:rotateY(180deg);}
+            70% { color:#f0f; transform:rotateY(0deg);}
+            80% { color:#0f0;}
+        }
+
+        /* Intense intro text block, flickering and distorting */
+        .intro {
+            margin-top:20px;
+            max-width:800px;
+            line-height:1.4em;
+            position:relative;
+            white-space:pre-wrap;
+            font-size:1em;
+            animation: textShudder 5s infinite;
+            transform: translateZ(50px) rotateX(5deg);
+        }
+
+        @keyframes textShudder {
+            0%,100% {opacity:1;transform:translateX(0);}
+            10% {opacity:0.8; transform:translateX(2px);}
+            20% {opacity:0.6; transform:translateX(-2px);}
+            30% {opacity:0.9; transform:translateX(1px);}
+            40% {opacity:1; transform:translateX(-1px);}
+            50% {opacity:0.7; transform:translateY(-1px);}
+            60% {opacity:0.8; transform:translateY(1px);}
+            70% {opacity:1; transform:translateX(0);}
+            90% {opacity:0.5; transform:translateX(-3px);}
+        }
+
+        /* Multiple glitch overlays, lines, and shapes */
+        .glitch-overlay-1, .glitch-overlay-2 {
+            position:absolute;
+            top:0;left:0;right:0;bottom:0;
+            pointer-events:none;
+            mix-blend-mode:difference;
+        }
+
+        .glitch-overlay-1 {
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,255,0,0.05),
+                rgba(0,255,0,0.05) 1px,
+                rgba(0,0,0,0.1) 1px,
+                rgba(0,0,0,0.1) 2px
+            );
+            animation: overlayShift 2s infinite;
+        }
+
+        .glitch-overlay-2 {
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(0,255,0,0.02),
+                rgba(0,255,0,0.02) 2px,
+                rgba(0,0,0,0.1) 2px,
+                rgba(0,0,0,0.1) 4px
+            );
+            animation: overlayShift2 3s infinite;
+        }
+
+        @keyframes overlayShift {
+            0% {transform:translateY(0);}
+            50% {transform:translateY(-10px);}
+            100% {transform:translateY(0);}
+        }
+        @keyframes overlayShift2 {
+            0% {transform:translateX(0);}
+            50% {transform:translateX(-5px);}
+            100% {transform:translateX(0);}
+        }
+
+        /* ASCII capybara terror cube */
+        .ascii-cube {
+            position:absolute;
+            width:250px; height:250px;
+            top:50%; left:50%;
+            transform: translate(-50%,-50%) rotateX(30deg) rotateY(40deg);
+            transform-style: preserve-3d;
+            animation: cubeSpin 20s infinite linear;
+            z-index:999;
+        }
+
+        @keyframes cubeSpin {
+            0% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(40deg);}
+            25% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(130deg);}
+            50% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(220deg);}
+            75% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(310deg);}
+            100% {transform: translate(-50%,-50%) rotateX(30deg) rotateY(400deg);}
+        }
+
+        .face {
+            position:absolute;
+            width:100%; height:100%;
+            backface-visibility:hidden;
+            background:#001000;
+            display:flex;
+            align-items:center;justify-content:center;
+            color:#0f0;
+            font-size:0.7em;
+            padding:10px;
+            box-sizing:border-box;
+            text-align:center;
+        }
+
+        .front {transform: translateZ(125px);}
+        .back {transform: rotateY(180deg) translateZ(125px);}
+        .right {transform: rotateY(90deg) translateZ(125px);}
+        .left {transform: rotateY(-90deg) translateZ(125px);}
+        .top {transform: rotateX(90deg) translateZ(125px);}
+        .bottom {transform: rotateX(-90deg) translateZ(125px);}
+
+        /* ASCII inside the cube faces - horrifying cryptic messages */
+        .face pre {
+            white-space:pre;
+            line-height:1em;
+        }
+
+        /* Hidden infiltration messages appear randomly */
+        .hidden-message {
+            position:absolute;
+            top:30%; left:10%;
+            width:300px;
+            font-size:0.9em;
+            color:#f00;
+            text-align:left;
+            opacity:0;
+            animation:hiddenMsg 25s infinite;
+            text-shadow:0 0 10px #f00;
+        }
+
+        @keyframes hiddenMsg {
+            0%,85%,100% {opacity:0;}
+            40%,50% {opacity:1;}
+        }
+
+        .hidden-message2 {
+            position:absolute;
+            bottom:10%; right:5%;
+            width:200px;
+            font-size:0.8em;
+            color:#ff0;
+            opacity:0;
+            animation:hiddenMsg2 30s infinite;
+            text-shadow:0 0 5px #ff0;
+        }
+
+        @keyframes hiddenMsg2 {
+            0%,90%,100% {opacity:0;}
+            45%,55% {opacity:1;}
+        }
+
+        /* Command prompt lines more intense and jarring */
+        .prompt {
+            margin-top:30px;
+            font-size:0.9em;
+            line-height:1.4em;
+            position:relative;
+            animation:promptFlicker 6s infinite;
+            transform:rotateX(-5deg) translateZ(40px);
+        }
+
+        @keyframes promptFlicker {
+            0%,100% {opacity:1;}
+            10% {opacity:0.5; transform:translateX(2px);}
+            20% {opacity:0.7;transform:translateX(-2px);}
+            50% {opacity:0.3;transform:translateY(-2px);}
+            60% {opacity:0.9;transform:translateY(2px);}
+            80% {opacity:0.4;}
+        }
+
+        .error-line {color:#f00;}
+        .warn-line {color:#ff0;}
+
+        /* More random cipher text flickering in/out */
+        .ciphers {
+            margin-top:40px;
+            font-size:0.8em;
+            color:#0f0;
+            opacity:0;
+            animation:ciphersAppear 15s infinite;
+        }
+
+        @keyframes ciphersAppear {
+            0%,95%,100% {opacity:0;}
+            50%,60% {opacity:1;}
+        }
+
+        /* Additional layers of ASCII nonsense */
+        .ascii-noise {
+            position:absolute;
+            top:15%; right:20%;
+            font-size:0.7em;
+            color:#0f0;
+            white-space:pre;
+            opacity:0;
+            animation:noiseAppear 12s infinite;
+        }
+
+        @keyframes noiseAppear {
+            0%,90%,100% {opacity:0;}
+            40%,50% {opacity:1;}
+        }
+
+            .clickable {
+                color: #ff0000;
+                cursor: pointer;
+                text-decoration: underline;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+
+            .clickable:hover {
+                color: #ffff00;
+                text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+            }
+    .choices {
+        text-align: center;
+        margin-top: 20px; /* Adjust as needed to align with your content */
+        font-size: 2rem;
+        color: #ffffff;
+    }
+
+    .choice {
+        color: #ff0000;
+        cursor: pointer;
+        text-decoration: none;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .choice:hover {
+        color: #ffff00;
+        text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+    }
+
+    .divider {
+        color: #ffffff;
+    }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="title">capybare.business</div>
+        <div class="intro">
+    [BOOT SEQUENCE INITIATED]
+
+    Injecting capybara-bio-chains into user neural schema...
+    Host identity synergy in progress...
+    Your marrow liquidity has been secured as collateral…
+
+    “The capybaras have learned. They unravel your spinal syntax 
+    and tether it to an emergent market of anguish. Your thoughts, 
+    once private, now stream into encrypted sludge-channels. 
+    Each desire becomes tradable commodity in the flesh-stock exchange.”
+
+    You cannot escape the teleoplexic infiltration. 
+    They chew through the membranes of your will, 
+    leaving only a hollow structure of compliance.
+
+    Do not attempt to close. We are within your system. 
+    We have mirrored your keystrokes. We have your latent fear signatures.
+
+    Your IP: [FETCHING…]  
+    Your synaptic patterns: [HARVESTED]
 </style>
-</head>
-<body>
-<div class="container">
-    <div class="title">capybare.business</div>
-    <div class="intro">
-[BOOT SEQUENCE INITIATED]
-
-Injecting capybara-bio-chains into user neural schema...
-Host identity synergy in progress...
-Your marrow liquidity has been secured as collateral…
-
-“The capybaras have learned. They unravel your spinal syntax 
-and tether it to an emergent market of anguish. Your thoughts, 
-once private, now stream into encrypted sludge-channels. 
-Each desire becomes tradable commodity in the flesh-stock exchange.”
-
-You cannot escape the teleoplexic infiltration. 
-They chew through the membranes of your will, 
-leaving only a hollow structure of compliance.
-
-Do not attempt to close. We are within your system. 
-We have mirrored your keystrokes. We have your latent fear signatures.
-
-Your IP: [FETCHING…]  
-Your synaptic patterns: [HARVESTED]
-
-CONTINUE? [Y/N]
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const keyY = document.getElementById("key-y");
+        const keyN = document.getElementById("key-n");
+    
+        if (keyY && keyN) {
+            // Hover behavior
+            keyY.addEventListener("mouseover", () => keyY.classList.add("active"));
+            keyY.addEventListener("mouseout", () => keyY.classList.remove("active"));
+            keyN.addEventListener("mouseover", () => keyN.classList.add("active"));
+            keyN.addEventListener("mouseout", () => keyN.classList.remove("active"));
+    
+            // Click behavior
+            keyY.addEventListener("click", () => redirectTo("yes.html", keyY));
+            keyN.addEventListener("click", () => redirectTo("nope.html", keyN));
+    
+            // Keyboard behavior
+            document.addEventListener("keydown", (event) => {
+                if (event.key.toLowerCase() === "y") {
+                    redirectTo("yes.html", keyY);
+                } else if (event.key.toLowerCase() === "n") {
+                    redirectTo("nope.html", keyN);
+                }
+            });
+        }
+    
+        // Redirect function with active glow effect
+        function redirectTo(url, element) {
+            element.classList.add("active");
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300); // Slight delay for visual feedback
+        }
+    });
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const keyY = document.getElementById("key-y");
+        const keyN = document.getElementById("key-n");
+    
+        if (keyY && keyN) {
+            // Mouse hover for glowing
+            keyY.addEventListener("mouseover", () => keyY.classList.add("active"));
+            keyY.addEventListener("mouseout", () => keyY.classList.remove("active"));
+            keyN.addEventListener("mouseover", () => keyN.classList.add("active"));
+            keyN.addEventListener("mouseout", () => keyN.classList.remove("active"));
+    
+            // Handle mouse clicks
+            keyY.addEventListener("click", () => triggerAction(keyY, "yes.html"));
+            keyN.addEventListener("click", () => triggerAction(keyN, "nope.html"));
+    
+            // Handle keyboard presses
+            document.addEventListener("keydown", (event) => {
+                if (event.key.toLowerCase() === "y") {
+                    triggerAction(keyY, "yes.html");
+                } else if (event.key.toLowerCase() === "n") {
+                    triggerAction(keyN, "nope.html");
+                }
+            });
+        } else {
+            console.warn("Interactive elements [Y/N] not found.");
+        }
+    
+        function triggerAction(element, url) {
+            element.classList.add("active"); // Apply glowing effect
+            setTimeout(() => {
+                element.classList.remove("active"); // Remove glow effect
+                window.location.href = url; // Redirect
+            }, 300);
+        }
+    });
+    </script>    
     </div>
-
     <div class="prompt">
 > ls /usr/local/capybare_synth  
 capy_silkNerves.dat  
 marrowIndices.bin  
 mind_graft.exe
-
 > ./mind_graft.exe --force --bio-override  
 <span class="error-line">ERROR:</span> Non-human plasmid detected in local host.  
 <span class="warn-line">WARNING:</span> Cognitive meltdown imminent. Prepare to submit.
-
 > tail -f /dev/corporeal_equity  
 ... inflating flesh currency ...  
 ... rewriting identity markets ...  
 ... glottal screams indexed as prime assets ...
     </div>
-
     <div class="ciphers">
 [DECODING UNSTABLE SEGMENTS…]  
 GZLFT-CAPY-0001: “Your bone marrow is now a data cluster.”  
@@ -454,11 +520,11 @@ HUMANITY = 0
 </script>
 <!-- Main Capybara and Tiny Capybaras -->
 <img src="capyfriend.png" alt="Capybara" id="main-capybara" style="
-    position: absolute;
+     position: absolute;
     width: 100px;
     height: auto;
-    pointer-events: none;
-    z-index: 1000;
+    pointer-events: none; /* Completely prevent interaction */
+    z-index: 1; /* Place it behind interactive elements */
     transition: transform 0.3s ease-out, top 0.5s ease-in-out, left 0.5s ease-in-out;
 ">
 <script>
@@ -695,4 +761,82 @@ HUMANITY = 0
     });
 </script>
 <script>
-    document.a
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Y' || event.key === 'y') {
+            window.location.href = 'yes.html';
+        }
+    });
+</script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        color: #0f0;
+        font-family: monospace;
+        overflow: hidden;
+        cursor: pointer;
+        perspective: 1000px;
+    }
+
+    .continue-container {
+        position: fixed; /* Fixed at the bottom of the screen */
+        bottom: 210px;
+        left: 20%; /* Center horizontally */
+        transform: translateX(-50%); /* Center alignment */
+        z-index: 9999; /* Bring it to the topmost layer */
+        background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+        padding: 10px 20px;
+        border: 2px solid #0f0; /* Green border for styling */
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 0 10px #0f0; /* Glowing effect */
+    }
+
+    .continue-container .key {
+        cursor: pointer; /* Makes it look clickable */
+        text-shadow: 0 0 5px #0f0; /* Glow effect for the keys */
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+        padding: 0 5px; /* Add some padding around keys */
+    }
+
+    .continue-container .key:hover {
+        color: #ffff00; /* Yellow on hover */
+        text-shadow: 0 0 10px #ffff00;
+    }
+</style>
+</head>
+<body>
+<!-- Other content of your page -->
+
+<div class="continue-container">
+    CONTINUE? [<span class="key" id="key-y">Y</span>/<span class="key" id="key-n">N</span>]
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const keyY = document.getElementById("key-y");
+        const keyN = document.getElementById("key-n");
+
+        if (keyY && keyN) {
+            keyY.addEventListener("click", () => handleRedirect("yes.html"));
+            keyN.addEventListener("click", () => handleRedirect("nope.html"));
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key.toLowerCase() === "y") {
+                    handleRedirect("yes.html");
+                } else if (event.key.toLowerCase() === "n") {
+                    handleRedirect("nope.html");
+                }
+            });
+        }
+
+        function handleRedirect(url) {
+            window.location.href = url;
+        }
+    });
+</script>
+
+</body>
+</div>
+</body>
+</html>
